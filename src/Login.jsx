@@ -22,17 +22,17 @@ function LoginPage() {
         e.preventDefault();
         try {
             console.log("Form Submitted");
-            const response = await axios.post(`/api/login`, {
+            const response = await axios.post(`${BASE_URL}/login`, {
                 username: email,
                 password: password,
             });
 
             console.log(response.data);
 
-            if (response.data.status === 'success') {
+            if (response.data.success) {
                 console.log("Login Successful");
-                localStorage.setItem('username', email);
-                navigate('/dashboard');
+                // localStorage.setItem('username', email);
+                // navigate('/dashboard');
             } else {
                 console.log("Username Or Password Wrong");
                 setError('Invalid username or password');
