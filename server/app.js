@@ -1,8 +1,12 @@
 // index.js
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
@@ -11,10 +15,10 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     
-    if (username === 'sarvesh' && password === '1234') {
-      res.send('Login successful!');
+    if (username === 'sarveshgandhere2002@gmail.com' && password === '1234') {
+      res.status(202).json({"success":true,"message":"Login Successfully"});
     } else {
-      res.status(401).send('Invalid credentials');
+        res.status(202).json({"success":false,"message":"Username or Password is incorrect"});
     }
   });
 
