@@ -26,14 +26,27 @@ nav .right{
 }
 
 .mainPanel aside{
-    background-color: black;
+    background-color: rgb(52 58 64);
     color: aliceblue;
-    padding: 20px 10px;
+    padding: 0px 10px;
     box-sizing: border-box;
     /* position: fixed; */
     top: 0;
     left: 0;
     z-index: 1000;
+}
+
+.mainPanel aside .CompanyProfile{
+    display: grid;
+    grid-template-columns: 40px auto;
+    /* background-color: antiquewhite; */
+    width: 100%;
+    padding: 20px 0px;
+    border-bottom: 1px solid white;
+    /* padding: 20px; */
+}
+.mainPanel aside .CompanyProfile div{
+    
 }
 
 .main-container{
