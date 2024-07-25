@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 // import companyImage from "../../public/companylogo.png";
 // import '../assets/css/sidebar.css'; // You'll need to create this CSS file
 
@@ -24,7 +25,7 @@ const Sidebar = () => {
           <img src="/companylogo.png" style={{width:"100%",height:"100%",borderRadius:"50%"}}></img>
         </div>
         <div style={{fontSize:"20px",display:"flex",paddingLeft:"10px"}}>
-          FashionHub
+          Sarvesh
         </div>
       </div>
       <div className='nav-items'>
