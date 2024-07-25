@@ -46,9 +46,31 @@ nav .right{
     /* padding: 20px; */
 }
 .mainPanel aside .CompanyProfile div{
-    
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+    /* justify-content: center; */
 }
 
-.main-container{
-    /* height: 200vh; */
+.mainPanel aside .nav-items{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding-top: 10px;
+}
+
+.mainPanel aside .nav-items .nav-item{
+    padding: 10px;
+    /* background-color: aqua; */
+    width: 100%;
+    /* text-align: center; */
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.mainPanel aside .nav-items .active{
+    background-color: aqua;
+    color: black
 }

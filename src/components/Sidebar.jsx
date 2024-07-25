@@ -27,6 +27,14 @@ const Sidebar = () => {
           FashionHub
         </div>
       </div>
+      <div className='nav-items'>
+        <div className='nav-item active'>
+          Dashboard
+        </div>
+        <div className='nav-item '>
+          Dashboard
+        </div>
+      </div>
     </aside>
   );
 };
