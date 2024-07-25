@@ -1,6 +1,6 @@
 import React from 'react';
-// import Sidebar from '../components/Sidebar';
-// import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
+import Navbar from '../components/Navbar';
 import '../assets/css/layout.css';
 
 function Component() {
@@ -8,17 +8,9 @@ function Component() {
         <>
             {/*  */}
             <div className='mainPanel'>
-                <aside>
-                    
-                </aside>
+                <Sidebar />
                 <div className='NavPlusContent'>
-                    <nav>
-                        <div className='right'>
-                            <div className='btn btn-danger'>
-                                <span className=''>Logout</span>
-                            </div>
-                        </div>
-                    </nav>
+                    <Navbar />
                     <div className='main-container'>
                         hello
                     </div>
