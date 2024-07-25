@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Login.jsx';
-import AdminComponent from "./components/AdminComponent.jsx"
+import AdminComponent from "./pages/AdminComponent.jsx"
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      
         <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/admin" element={<AdminComponent />}/>
+            {/* <Route path="/dashboard" element={<AdminComponent/>}>
+          </Route> */}
         </Routes>
-      </div>
+      
     </Router>
   );
 }
