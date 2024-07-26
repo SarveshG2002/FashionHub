@@ -1,40 +1,43 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-// import companyImage from "../../public/companylogo.png";
-// import '../assets/css/sidebar.css'; // You'll need to create this CSS file
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const navItems = [
+    { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Users", path: "/admin/users" },
+    { name: "SEO", path: "/admin/seo" }
+  ];
 
   return (
     <aside>
       <div className='CompanyProfile'>
-        <div style={{height:"40px"}}>
-          <img src="/companylogo.png" style={{width:"100%",height:"100%",borderRadius:"50%"}}></img>
+        <div style={{ height: "40px" }}>
+          <img src="/companylogo.png" style={{ width: "100%", height: "100%", borderRadius: "50%" }} alt="Company Logo" />
         </div>
-        <div style={{fontSize:"20px",display:"flex",paddingLeft:"10px"}}>
+        <div style={{ fontSize: "20px", display: "flex", paddingLeft: "10px" }}>
           FashionHub
         </div>
       </div>
       <div className='CompanyProfile'>
-        <div style={{height:"40px"}}>
-          <img src="/companylogo.png" style={{width:"100%",height:"100%",borderRadius:"50%"}}></img>
+        <div style={{ height: "40px" }}>
+          <img src="/companylogo.png" style={{ width: "100%", height: "100%", borderRadius: "50%" }} alt="User Profile" />
         </div>
-        <div style={{fontSize:"20px",display:"flex",paddingLeft:"10px"}}>
+        <div style={{ fontSize: "20px", display: "flex", paddingLeft: "10px" }}>
           Sarvesh
         </div>
       </div>
       <div className='nav-items'>
-        <div className='nav-item active'>
-          Dashboard
-        </div>
-        <div className='nav-item '>
-          Dashboard
-        </div>
+        {navItems.map((item, index) => (
+          <Link 
+            to={item.path} 
+            key={index} 
+            className={`nav-item ${location.pathname === item.path ? "active" : ""}`}
+          >
+            {item.name}
+          </Link>
+        ))}
       </div>
     </aside>
   );

@@ -68,9 +68,16 @@ nav .right{
     border-radius: 5px;
     font-size: 18px;
     font-weight: 500;
+    text-decoration: none;
+    color: white;
 }
 
 .mainPanel aside .nav-items .active{
     background-color: aqua;
     color: black
+}
+
+.mainPanel aside .nav-items .nav-item:not(.active):hover{
+    background-color: rgb(95, 100, 105);
+    color: white;
 }
