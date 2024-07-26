@@ -1,11 +1,13 @@
 // index.js
 import express from 'express';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
 import Admins from './Models/Admins.js'
 import mongoose from 'mongoose';
 
 const app = express();
 const port = 3000;
+const SECRET_KEY = 'MNBVCXZPOIUYTREWQLK0192837465JHGFDSAlaksjdhfg';
 
 app.use(cors());
 app.use(express.json());
@@ -27,12 +29,22 @@ app.get('/', (req, res) => {
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const admin = await Admins.findOne({username,password});
+    const admin = await Admins.findOne({ username, password });
 
     if (admin) {
-        res.status(202).json({ "success": true, "message": "Login Successfully" });
+        // Generate a JWT token
+        // const token = jwt.sign({ id: admin._id, username: admin.username }, SECRET_KEY, { expiresIn: '2d' });
+
+        res.status(202).json({
+            success: true,
+            message: "Login Successfully",
+            username: username
+        });
     } else {
-        res.status(202).json({ "success": false, "message": "Username or Password is incorrect" });
+        res.status(202).json({
+            success: false,
+            message: "Username or Password is incorrect"
+        });
     }
 });
 

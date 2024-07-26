@@ -14,7 +14,7 @@ function LoginPage() {
         const username = localStorage.getItem('username');
         if (username) {
             // Navigate to dashboard if username exists
-            navigate('/dashboard/inbox');
+            navigate('/admin/dashboard');
         }
     }, []);
 
@@ -31,8 +31,8 @@ function LoginPage() {
 
             if (response.data.success) {
                 console.log("Login Successful");
-                // localStorage.setItem('username', email);
-                // navigate('/dashboard');
+                localStorage.setItem('username', response.data.username);
+                navigate('/admin/dashboard');
             } else {
                 console.log("Username Or Password Wrong");
                 setError('Invalid username or password');
