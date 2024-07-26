@@ -7,7 +7,8 @@ const Sidebar = () => {
   const navItems = [
     { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Users", path: "/admin/users" },
-    { name: "SEO", path: "/admin/seo" }
+    { name: "SEO", path: "/admin/seo" },
+    { name: "Brands", path: "/admin/brands"}
   ];
 
   return (

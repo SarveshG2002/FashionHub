@@ -81,3 +81,7 @@ nav .right{
     background-color: rgb(95, 100, 105);
     color: white;
 }
+
+.mainPanel .main-container{
+    padding: 20px;
+}
