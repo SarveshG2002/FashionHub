@@ -8,6 +8,9 @@ function Component() {
     const [pageName] = useState("Brand");
     const [brandName, setBrandName] = useState("");
     const [brands, setBrands] = useState([]);
+    const [editingId, setEditingId] = useState(null);
+
+    const [showModal, setShowModal] = useState(false);
     useEffect(() => {
         getAllbrands();
     }, [])
@@ -58,8 +61,55 @@ function Component() {
         }
     };
 
+    const setEditData = async(key)=>{
+        console.log(brands[key])
+        // setBrandName(brands[key].brand_name)
+    }
+
+    const toggleShow = () => setShowModal(!showModal);
+
     return (
         <>
+
+<button type="button" className="btn btn-primary" onClick={toggleShow}>
+        Launch demo modal
+      </button>
+
+      {showModal && (
+                <div className="modal fade show" style={{display: 'block'}} tabIndex="-1" role="dialog">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">{editingId ? 'Edit' : 'Add'} {pageName}</h5>
+                                <button type="button" className="close" onClick={toggleShow}>
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <label htmlFor="brand_name">{pageName} Name</label>
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="brand_name" 
+                                            value={brandName} 
+                                            onChange={(e) => setBrandName(e.target.value)} 
+                                            required
+                                        />
+                                    </div>
+                                    <button type="submit" className="btn btn-primary mt-2">
+                                        {editingId ? 'Update' : 'Add'} {pageName}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showModal && <div className="modal-backdrop fade show"></div>}
+
             <div className="card">
                 <div className="card-header">
                     Add {pageName}
@@ -106,7 +156,7 @@ function Component() {
                                 <td>{key + 1}</td>
                                 <td>{brand.brand_name}</td>
                                 <td>
-                                    <button className="btn btn-primary">
+                                    <button className="btn btn-primary" onClick={(e)=>setEditData(key)}>
                                         Edit
                                     </button>
                                     <button className='btn btn-danger' onClick={(e)=>deleteBrand(brand._id,e)}>
