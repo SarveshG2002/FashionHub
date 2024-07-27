@@ -1,38 +1,31 @@
-
 import express from 'express';
-import Brands from '../Models/Brands.js';
-import Brands from '../Models/Brands.js';
+import Brands from '../Models/Brands.js'; // Adjusted the import statement
 const brandRouter = express.Router();
-
-
-
 
 brandRouter.post('/saveBrand', async (req, res) => {
     try {
-        const {brand_name} = req.body;
-        const Brands = new Brands({
+        const { brand_name } = req.body;
+        const brand = new Brands({ // Changed Brands to brand
             brand_name
         });
 
-        if(await Brands.save()){
+        if (await brand.save()) { // Changed Brands to brand
             res.json({
-                "success":true,
-                "message":"Brand Added successfully",
+                "success": true,
+                "message": "Brand added successfully",
             });
-        }else{
+        } else {
             res.json({
-                "success":false,
-                "message":"Can't Add Brand"
-            })
+                "success": false,
+                "message": "Can't add brand"
+            });
         }
-        // res.status(201).json(newUser);
     } catch (err) {
         res.json({
-            "success":false,
-            "message":"Something went wrong"
-        })
+            "success": false,
+            "message": "Something went wrong: " + err
+        });
     }
 });
-
 
 export default brandRouter;

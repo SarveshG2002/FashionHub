@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import Admins from './Models/Admins.js'
+import brandRouter from './Routes/brandRoute.js';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -23,7 +24,7 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
-app.use('/brands', brandsRputer);
+app.use('/brands', brandRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
