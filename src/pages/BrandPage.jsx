@@ -62,24 +62,27 @@ function Component() {
     };
 
     const setEditData = async (key) => {
-        if(showModal){
+        if (showModal) {
 
-        }else{
+        } else {
             console.log(brands[key])
             setBrandName(brands[key].brand_name)
             setEditingId(brands[key]["_id"])
-            
+
         }
         setShowModal(!showModal)
-        
+
     }
+
+
+    
 
     // const toggleShow = () => ;
 
     return (
         <>
 
-            
+
 
             {showModal && (
                 <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
@@ -92,7 +95,7 @@ function Component() {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <form onSubmit={handleSubmit}>
+                                <form>
                                     <div className="form-group">
                                         <label htmlFor="brand_name">{pageName} Name</label>
                                         <input
@@ -105,7 +108,7 @@ function Component() {
                                         />
                                     </div>
                                     <button type="submit" className="btn btn-primary mt-2">
-                                        {editingId ? 'Update' : 'Add'} {pageName}
+                                        Update
                                     </button>
                                 </form>
                             </div>
