@@ -29,9 +29,36 @@ brandRouter.post('/saveBrand', async (req, res) => {
     }
 });
 
+brandRouter.post('/deleteBrand', async (req, res) => {
+    console.log("hello");
+    try {
+        const { id } = req.body; // Extract the brand ID from the request body
+        const deletedBrand = await Brands.findByIdAndDelete(id); // Attempt to find and delete the brand by ID
+
+        if (deletedBrand) {
+            res.json({
+                "success": true,
+                "message": "Brand deleted successfully",
+                "data": deletedBrand
+            });
+        } else {
+            res.json({ // Set status to 404 Not Found if the brand was not found
+                "success": false,
+                "message": "Brand not found"
+            });
+        }
+    } catch (err) {
+        res.json({ // Set status to 500 Internal Server Error for other errors
+            "success": false,
+            "message": "Something went wrong: " + err
+        });
+    }
+});
+
+
 brandRouter.post('/getAllBrands', async (req, res) => {
     try {
-        console.log("hello")
+        // console.log("hello")
         const brands = await Brands.find(); // Retrieve all brand documents
         res.json({
             "success": true,

@@ -21,6 +21,8 @@ function Component() {
             console.log(error);
         }
     }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("hello");
@@ -31,11 +33,28 @@ function Component() {
             });
 
             console.log(response.data);
-
+            setBrands(prevBrands => [...prevBrands, response.data.data]);
+        
+            // Clear the input field after successful submission
+            setBrandName("");
 
         } catch (error) {
             console.error("Error during login:", error);
             // setError('An error occurred. Please try again.');
+        }
+    };
+
+    const deleteBrand = async (id, e) => {
+        console.log(id);
+        try{
+            if(window.confirm("Are you sure?")){
+                await axios.post(`${BASE_URL}/brands/deleteBrand`,{
+                    id:id
+                })
+                setBrands(brands.filter(brand => brand._id !== id));
+            }
+        }catch(error){
+            console.log(error)
         }
     };
 
@@ -50,7 +69,7 @@ function Component() {
                         <div className="col-md-12 row">
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_name">{pageName} Name</label>
-                                <input type="text" className="form-control" id="brand_name" name="brand_name" placeholder="Enter Here" onChange={(e) => setBrandName(e.target.value)} />
+                                <input type="text" className="form-control" id="brand_name" name="brand_name" placeholder="Enter Here" value={brandName} onChange={(e) => setBrandName(e.target.value)} />
                             </div>
                             <div className="col-md-6 form-group">
                                 {/* You can add more form fields here if needed */}
@@ -90,7 +109,7 @@ function Component() {
                                     <button className="btn btn-primary">
                                         Edit
                                     </button>
-                                    <button className='btn btn-danger'>
+                                    <button className='btn btn-danger' onClick={(e)=>deleteBrand(brand._id,e)}>
                                         Delete
                                     </button>
                                 </td>
