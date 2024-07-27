@@ -6,6 +6,7 @@ import DashboardComponent from "./pages/DashboardPage.jsx";
 import UserComponent from "./pages/UsersPage.jsx";
 import SeoComponent from "./pages/SeoPage.jsx";
 import BrandComponent from "./pages/BrandPage.jsx";
+import CategoryComponent from "./pages/CategoryPage.jsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="brands" element={<BrandComponent />} />
           <Route path="users" element={<UserComponent />} />
           <Route path="seo" element={<SeoComponent />} />
+          <Route path="category" element={<CategoryComponent />} />
 
           {/* Add more nested routes here as needed */}
         </Route>
