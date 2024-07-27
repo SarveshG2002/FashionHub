@@ -8,7 +8,8 @@ const Sidebar = () => {
     { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Users", path: "/admin/users" },
     { name: "SEO", path: "/admin/seo" },
-    { name: "Brands", path: "/admin/brands"}
+    { name: "Brands", path: "/admin/brands"},
+    { name: "Category", path: "/admin/category"}
   ];
 
   return (
