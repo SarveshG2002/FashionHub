@@ -1,16 +1,32 @@
 import React from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../components/Host.jsx';
 import { useEffect,useState } from 'react';
 
 function Component() {
 
     const pageName = useState("Brand");
     const [brandName,setBrandName] = useState("");
+    const [brands,setBrands] = useState([]);
+    useEffect(()=>{
+        getAllbrands();
+    },[])
+
+    const getAllbrands = async ()=>{
+        try{
+            let brands = await axios.post(`${BASE_URL}/brands/getAllBrands`);
+            console.log(brands);
+            setBrands(brands.data.data);
+        }catch(error){
+            console.log(error);
+        }
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("hello");
         try {
             console.log("Form Submitted");
-            const response = await axios.post(`${BASE_URL}/saveBrand`, {
+            const response = await axios.post(`${BASE_URL}/brands/saveBrand`, {
                 brand_name: brandName
             });
 
@@ -19,7 +35,7 @@ function Component() {
             
         } catch (error) {
             console.error("Error during login:", error);
-            setError('An error occurred. Please try again.');
+            // setError('An error occurred. Please try again.');
         }
     };
 

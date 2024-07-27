@@ -12,7 +12,8 @@ brandRouter.post('/saveBrand', async (req, res) => {
         if (await brand.save()) { // Changed Brands to brand
             res.json({
                 "success": true,
-                "message": "Brand added successfully",
+                "message": "Brand Save Successfully",
+                "data":brand
             });
         } else {
             res.json({
@@ -27,5 +28,22 @@ brandRouter.post('/saveBrand', async (req, res) => {
         });
     }
 });
+
+brandRouter.post('/getAllBrands', async (req, res) => {
+    try {
+        console.log("hello")
+        const brands = await Brands.find(); // Retrieve all brand documents
+        res.json({
+            "success": true,
+            "data": brands,
+        });
+    } catch (err) {
+        res.json({
+            "success": false,
+            "message": "Something went wrong: " + err
+        });
+    }
+});
+
 
 export default brandRouter;
