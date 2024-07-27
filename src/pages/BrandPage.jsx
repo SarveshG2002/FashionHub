@@ -4,30 +4,23 @@ import { useEffect,useState } from 'react';
 function Component() {
 
     const pageName = useState("Brand");
+    const [brandName,setBrandName] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("hello");
-        // try {
-        //     console.log("Form Submitted");
-        //     const response = await axios.post(`${BASE_URL}/login`, {
-        //         username: email,
-        //         password: password,
-        //     });
+        try {
+            console.log("Form Submitted");
+            const response = await axios.post(`${BASE_URL}/saveBrand`, {
+                brand_name: brandName
+            });
 
-        //     console.log(response.data);
+            console.log(response.data);
 
-        //     if (response.data.success) {
-        //         console.log("Login Successful");
-        //         localStorage.setItem('username', response.data.username);
-        //         navigate('/admin/dashboard');
-        //     } else {
-        //         console.log("Username Or Password Wrong");
-        //         setError('Invalid username or password');
-        //     }
-        // } catch (error) {
-        //     console.error("Error during login:", error);
-        //     setError('An error occurred. Please try again.');
-        // }
+            
+        } catch (error) {
+            console.error("Error during login:", error);
+            setError('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -40,7 +33,7 @@ function Component() {
                     <div className="col-md-12 row">
                         <div className="col-md-6 form-group">
                             <label htmlFor="category_name">{pageName} Name</label>
-                            <input type="text" className="form-control" id="category_name" name="category_name" placeholder="Enter Here" />
+                            <input type="text" className="form-control" id="brand_name" name="brand_name" placeholder="Enter Here" onChange={(e)=>setBrandName(e.target.value)}/>
                         </div>
                         <div className="col-md-6 form-group">
                             {/* You can add more form fields here if needed */}
