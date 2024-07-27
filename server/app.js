@@ -23,6 +23,8 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
+app.use('/brands', brandsRputer);
+
 app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
@@ -47,6 +49,8 @@ app.post('/login', async (req, res) => {
         });
     }
 });
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
