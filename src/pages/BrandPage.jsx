@@ -37,7 +37,7 @@ function Component() {
 
             console.log(response.data);
             setBrands(prevBrands => [...prevBrands, response.data.data]);
-        
+
             // Clear the input field after successful submission
             setBrandName("");
 
@@ -49,39 +49,45 @@ function Component() {
 
     const deleteBrand = async (id, e) => {
         console.log(id);
-        try{
-            if(window.confirm("Are you sure?")){
-                await axios.post(`${BASE_URL}/brands/deleteBrand`,{
-                    id:id
+        try {
+            if (window.confirm("Are you sure?")) {
+                await axios.post(`${BASE_URL}/brands/deleteBrand`, {
+                    id: id
                 })
                 setBrands(brands.filter(brand => brand._id !== id));
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     };
 
-    const setEditData = async(key)=>{
-        console.log(brands[key])
-        // setBrandName(brands[key].brand_name)
+    const setEditData = async (key) => {
+        if(showModal){
+
+        }else{
+            console.log(brands[key])
+            setBrandName(brands[key].brand_name)
+            setEditingId(brands[key]["_id"])
+            
+        }
+        setShowModal(!showModal)
+        
     }
 
-    const toggleShow = () => setShowModal(!showModal);
+    // const toggleShow = () => ;
 
     return (
         <>
 
-<button type="button" className="btn btn-primary" onClick={toggleShow}>
-        Launch demo modal
-      </button>
+            
 
-      {showModal && (
-                <div className="modal fade show" style={{display: 'block'}} tabIndex="-1" role="dialog">
+            {showModal && (
+                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">{editingId ? 'Edit' : 'Add'} {pageName}</h5>
-                                <button type="button" className="close" onClick={toggleShow}>
+                                <h5 className="modal-title">Edit {pageName}</h5>
+                                <button type="button" className="close" onClick={setEditData}>
                                     <span>&times;</span>
                                 </button>
                             </div>
@@ -89,12 +95,12 @@ function Component() {
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="brand_name">{pageName} Name</label>
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            id="brand_name" 
-                                            value={brandName} 
-                                            onChange={(e) => setBrandName(e.target.value)} 
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="brand_name"
+                                            value={brandName}
+                                            onChange={(e) => setBrandName(e.target.value)}
                                             required
                                         />
                                     </div>
@@ -151,20 +157,20 @@ function Component() {
                             </tr>
                         </thead>
                         <tbody>
-                        {brands.map((brand, key) => (
-                            <tr key={key}>
-                                <td>{key + 1}</td>
-                                <td>{brand.brand_name}</td>
-                                <td>
-                                    <button className="btn btn-primary" onClick={(e)=>setEditData(key)}>
-                                        Edit
-                                    </button>
-                                    <button className='btn btn-danger' onClick={(e)=>deleteBrand(brand._id,e)}>
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                            {brands.map((brand, key) => (
+                                <tr key={key}>
+                                    <td>{key + 1}</td>
+                                    <td>{brand.brand_name}</td>
+                                    <td>
+                                        <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
+                                            Edit
+                                        </button>
+                                        <button className='btn btn-danger' onClick={(e) => deleteBrand(brand._id, e)}>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
