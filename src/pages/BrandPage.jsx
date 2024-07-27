@@ -75,7 +75,31 @@ function Component() {
     }
 
 
-    
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        console.log("hello");
+        try {
+            console.log("Form Submitted");
+            const response = await axios.post(`${BASE_URL}/brands/updateBrand`, {
+                brand_name: brandName,
+                id:editingId
+            });
+
+            console.log(response.data);
+            if(response.data.success){
+                // setBrands(prevBrands => [...prevBrands, response.data.data]);
+                getAllbrands();
+                // Clear the input field after successful submission
+                setBrandName("");
+                setShowModal(!showModal)
+            }
+            
+
+        } catch (error) {
+            console.error("Error during login:", error);
+            // setError('An error occurred. Please try again.');
+        }
+    };
 
     // const toggleShow = () => ;
 
@@ -95,7 +119,7 @@ function Component() {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <form>
+                                <form onSubmit={handleEdit}>
                                     <div className="form-group">
                                         <label htmlFor="brand_name">{pageName} Name</label>
                                         <input
