@@ -7,6 +7,11 @@ import UserComponent from "./pages/UsersPage.jsx";
 import SeoComponent from "./pages/SeoPage.jsx";
 import BrandComponent from "./pages/BrandPage.jsx";
 import CategoryComponent from "./pages/CategoryPage.jsx";
+import ProductComponent from "./pages/ProductsPage.jsx";
+import VariantComponent from "./pages/VariantsPage.jsx";
+import CouponComponent from "./pages/Couponspage.jsx";
+import OrdersComponent from "./pages/OrdersPage.jsx";
+import CancelOrdersComponent from "./pages/CancelOrdersPage.jsx";
 
 
 function App() {
@@ -20,11 +25,11 @@ function App() {
           <Route path="users" element={<UserComponent />} />
           <Route path="seo" element={<SeoComponent />} />
           <Route path="category" element={<CategoryComponent />} />
-          <Route path="products" element={<CategoryComponent />} />
-          <Route path="varients" element={<CategoryComponent />} />
-          <Route path="coupons" element={<CategoryComponent />} />
-          <Route path="orders" element={<CategoryComponent />} />
-          <Route path="cancelled_orders" element={<CategoryComponent />} />
+          <Route path="products" element={<ProductComponent />} />
+          <Route path="varients" element={<VariantComponent />} />
+          <Route path="coupons" element={<CouponComponent />} />
+          <Route path="orders" element={<OrdersComponent />} />
+          <Route path="cancelled_orders" element={<CancelOrdersComponent />} />
 
           {/* Add more nested routes here as needed */}
         </Route>
