@@ -19,7 +19,7 @@ function Component() {
 
     const getAllCategories = async (e) => {
         const response = await axios.get(`${BASE_URL}/category/getAllCategories`);
-        console.log(response);
+        // console.log(response);
         if (response.data.success) {
             setCategoryList(response.data.data)
         }
@@ -41,7 +41,7 @@ function Component() {
             });
 
             if (response.data.success) {
-                console.log(response);
+                // console.log(response);
                 // Handle success (e.g., show a success message, clear the form)
                 // alert("Category added successfully!");
                 setCategoryList(prevCategory => [...prevCategory, response.data.data]);
@@ -59,7 +59,7 @@ function Component() {
     };
 
     const deleteCategory = async (id, e) => {
-        console.log(id);
+        // console.log(id);
         try {
             if (window.confirm("Are you sure?")) {
                 await axios.post(`${BASE_URL}/category/deleteCategory`, {
@@ -76,7 +76,7 @@ function Component() {
         if (showModal) {
 
         } else {
-            console.log(categoryList[key])
+            // console.log(categoryList[key])
             setCategoryName(categoryList[key].category_name)
             setEditingId(categoryList[key]["_id"])
             // setCategoryImage(categoryList)
@@ -89,28 +89,42 @@ function Component() {
 
     const handleEdit = async (e) => {
         e.preventDefault();
-        console.log("hello");
-        // try {
-        //     console.log("Form Submitted");
-        //     const response = await axios.post(`${BASE_URL}/brands/updateBrand`, {
-        //         brand_name: brandName,
-        //         id:editingId
-        //     });
+        // console.log("hello");
+        try {
+            // console.log("hello");
+            const formData = new FormData();
+            formData.append('category_name', categoryName);
+            formData.append('category_image', categoryImage);
+            formData.append('description', categoryDesc);
+            formData.append('id', editingId);
+            // console.log("hello");
 
-        //     console.log(response.data);
-        //     if(response.data.success){
-        //         // setBrands(prevBrands => [...prevBrands, response.data.data]);
-        //         getAllbrands();
-        //         // Clear the input field after successful submission
-        //         setBrandName("");
-        //         setShowModal(!showModal)
-        //     }
-            
+            const response = await axios.post(`${BASE_URL}/category/updateCategory`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            // console.log(response);
 
-        // } catch (error) {
-        //     console.error("Error during login:", error);
-        //     // setError('An error occurred. Please try again.');
-        // }
+            if (response.data.success) {
+                // console.log(response);
+                // Handle success (e.g., show a success message, clear the form)
+                // alert("Category added successfully!");
+                // setCategoryList(prevCategory => [...prevCategory, response.data.data]);
+                getAllCategories();
+                setCategoryName("");
+                setCategoryImage(null);
+                setCategoryDesc("");
+                setShowModal(!showModal)
+            }
+
+
+
+
+        } catch (error) {
+            console.error("Error adding category:", error);
+            alert("An error occurred while adding the category. Please try again.");
+        }
     };
 
     // const handleImageChange = (e) => {
@@ -167,7 +181,7 @@ function Component() {
                                         </div>
 
                                         <div className="col-md-12 mt-3 form-group">
-                                            <input type="submit" name="submit" value="Add" className="btn btn-primary" />
+                                            <input type="submit" name="submit" value="Update" className="btn btn-primary" />
                                         </div>
                                     </div>
                                 </form>
