@@ -37,12 +37,17 @@ function Component() {
                 }
             });
 
-            console.log(response);
-            // Handle success (e.g., show a success message, clear the form)
-            alert("Category added successfully!");
-            setCategoryName("");
-            setCategoryImage(null);
-            setCategoryDesc("");
+            if(response.data.success){
+                console.log(response);
+                // Handle success (e.g., show a success message, clear the form)
+                // alert("Category added successfully!");
+                setCategoryList(prevCategory => [...prevCategory, response.data.data]);
+                setCategoryName("");
+                setCategoryImage(null);
+                setCategoryDesc("");
+            }
+
+            
 
         } catch (error) {
             console.error("Error adding category:", error);
@@ -50,9 +55,23 @@ function Component() {
         }
     };
 
-    const handleImageChange = (e) => {
-        setCategoryImage(e.target.files[0]);
+    const deleteCategory = async (id, e) => {
+        console.log(id);
+        try {
+            if (window.confirm("Are you sure?")) {
+                await axios.post(`${BASE_URL}/category/deleteCategory`, {
+                    id: id
+                })
+                setCategoryList(categoryList.filter(category => category._id !== id));
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
+
+    // const handleImageChange = (e) => {
+    //     setCategoryImage(e.target.files[0]);
+    // };
 
     return (
         <>
@@ -82,13 +101,12 @@ function Component() {
                                     className="form-control"
                                     id="category_image"
                                     name="category_image"
-                                    onChange={handleImageChange}
+                                    onChange={(e)=>setCategoryImage(e.target.files[0])}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_desc">{pageName} Description</label>
-                                <input
-                                    type="text"
+                                <textarea
                                     className="form-control"
                                     id="category_desc"
                                     name="category_desc"
@@ -97,6 +115,7 @@ function Component() {
                                     onChange={(e) => setCategoryDesc(e.target.value)}
                                 />
                             </div>
+
                             <div className="col-md-12 mt-3 form-group">
                                 <input type="submit" name="submit" value="Add" className="btn btn-primary" />
                             </div>
@@ -145,7 +164,7 @@ function Component() {
                                         <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
                                             Edit
                                         </button>&nbsp;
-                                        <button className='btn btn-danger' onClick={(e) => deleteBrand(category._id, e)}>
+                                        <button className='btn btn-danger' onClick={(e) => deleteCategory(category._id, e)}>
                                             Delete
                                         </button>
                                     </td>

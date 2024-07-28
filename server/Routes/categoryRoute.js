@@ -84,7 +84,7 @@ categoryRouter.get('/getCategoryById', async (req, res) => {
     }
 });
 
-categoryRouter.put('/updateCategory', upload.single('category_image'), async (req, res) => {
+categoryRouter.post('/updateCategory', upload.single('category_image'), async (req, res) => {
     try {
         const { category_name, description, id } = req.body;
         const updateData = { category_name, description };
@@ -120,7 +120,7 @@ categoryRouter.put('/updateCategory', upload.single('category_image'), async (re
 });
 
 
-categoryRouter.delete('/deleteCategory', async (req, res) => {
+categoryRouter.post('/deleteCategory', async (req, res) => {
     try {
         const {id} = req.body;
         const deletedCategory = await Category.findByIdAndDelete(id);
