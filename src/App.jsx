@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet,Navigate } from 'react-router-dom';
 import Login from './Login.jsx';
 import AdminComponent from "./pages/AdminComponent.jsx";
 import DashboardComponent from "./pages/DashboardPage.jsx";
@@ -20,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminComponent />}>
+          <Route path="" element={<Navigate to = "dashboard"/>} />
           <Route path="dashboard" element={<DashboardComponent />} />
           <Route path="brands" element={<BrandComponent />} />
           <Route path="users" element={<UserComponent />} />
