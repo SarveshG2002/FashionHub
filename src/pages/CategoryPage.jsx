@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
@@ -8,6 +8,20 @@ function Component() {
     const [categoryName, setCategoryName] = useState("");
     const [categoryImage, setCategoryImage] = useState(null);
     const [categoryDesc, setCategoryDesc] = useState("");
+    const [categoryList, setCategoryList] = useState([]);
+
+    useEffect(() => {
+        getAllCategories();
+    }, []);
+
+    const getAllCategories = async (e) => {
+        const response = await axios.get(`${BASE_URL}/category/getAllCategories`);
+        console.log(response);
+        if (response.data.success) {
+            setCategoryList(response.data.data)
+        }
+
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +56,7 @@ function Component() {
 
     return (
         <>
-           <div className="card">
+            <div className="card">
                 <div className="card-header">
                     Add {pageName}
                 </div>
@@ -51,34 +65,34 @@ function Component() {
                         <div className="col-md-12 row">
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_name">{pageName} Name</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="category_name" 
-                                    name="category_name" 
-                                    placeholder="Enter Here" 
-                                    value={categoryName} 
-                                    onChange={(e) => setCategoryName(e.target.value)} 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="category_name"
+                                    name="category_name"
+                                    placeholder="Enter Here"
+                                    value={categoryName}
+                                    onChange={(e) => setCategoryName(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_image">{pageName} Image</label>
-                                <input 
-                                    type="file" 
-                                    className="form-control" 
-                                    id="category_image" 
-                                    name="category_image" 
-                                    onChange={handleImageChange} 
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="category_image"
+                                    name="category_image"
+                                    onChange={handleImageChange}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_desc">{pageName} Description</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    id="category_desc" 
-                                    name="category_desc" 
-                                    placeholder="Enter Here" 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="category_desc"
+                                    name="category_desc"
+                                    placeholder="Enter Here"
                                     value={categoryDesc}
                                     onChange={(e) => setCategoryDesc(e.target.value)}
                                 />
@@ -88,6 +102,57 @@ function Component() {
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <br />
+            <div className="card">
+                <div className="card-header">
+                    {pageName} List
+                </div>
+                <div className="card-body table-responsive">
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sr.
+                                </th>
+                                <th>
+                                    {pageName} Name
+                                </th>
+                                <th>
+                                    {pageName} Image
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {categoryList.map((category, key) => (
+                                <tr key={key}>
+                                    <td>{key + 1}</td>
+                                    <td>{category.category_name}</td>
+                                    <td>
+                                        <img src={`../server/uploads/categories/${category.category_image}`} alt={category.category_name} style={{ width: "150px" }} />
+                                    </td>
+                                    <td>
+                                        {category.description}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
+                                            Edit
+                                        </button>&nbsp;
+                                        <button className='btn btn-danger' onClick={(e) => deleteBrand(category._id, e)}>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </>

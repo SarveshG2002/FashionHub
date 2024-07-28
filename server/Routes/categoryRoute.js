@@ -62,7 +62,7 @@ categoryRouter.get('/getAllCategories', async (req, res) => {
     }
 });
 
-router.get('/getCategoryById', async (req, res) => {
+categoryRouter.get('/getCategoryById', async (req, res) => {
     try {
         const { id } = req.body;
         const category = await Category.findById(id);
@@ -84,7 +84,7 @@ router.get('/getCategoryById', async (req, res) => {
     }
 });
 
-router.put('/updateCategory', upload.single('category_image'), async (req, res) => {
+categoryRouter.put('/updateCategory', upload.single('category_image'), async (req, res) => {
     try {
         const { category_name, description, id } = req.body;
         const updateData = { category_name, description };
@@ -120,7 +120,7 @@ router.put('/updateCategory', upload.single('category_image'), async (req, res) 
 });
 
 
-router.delete('/deleteCategory', async (req, res) => {
+categoryRouter.delete('/deleteCategory', async (req, res) => {
     try {
         const {id} = req.body;
         const deletedCategory = await Category.findByIdAndDelete(id);
