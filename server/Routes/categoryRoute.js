@@ -23,7 +23,7 @@ categoryRouter.post('/saveCategory', upload.single('category_image'), async (req
         const category_image = req.file ? req.file.filename : null;
 
         if (!category_image) {
-            return res.status(400).json({ success: false, message: "Category image is required" });
+            return res.json({ success: false, message: "Category image is required" });
         }
 
         const newCategory = new Category({
@@ -34,13 +34,13 @@ categoryRouter.post('/saveCategory', upload.single('category_image'), async (req
 
         await newCategory.save();
 
-        res.status(201).json({
+        res.json({
             success: true,
             message: "Category saved successfully",
             data: newCategory
         });
     } catch (error) {
-        res.status(500).json({
+        res.json({
             success: false,
             message: "Error saving category: " + error.message
         });
@@ -55,9 +55,89 @@ categoryRouter.get('/getAllCategories', async (req, res) => {
             data: categories
         });
     } catch (error) {
-        res.status(500).json({
+        res.json({
             success: false,
             message: "Error fetching categories: " + error.message
+        });
+    }
+});
+
+router.get('/getCategoryById', async (req, res) => {
+    try {
+        const { id } = req.body;
+        const category = await Category.findById(id);
+        if (!category) {
+            return res.status(404).json({
+                success: false,
+                message: "Category not found"
+            });
+        }
+        res.json({
+            success: true,
+            data: category
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: "Error fetching category: " + error.message
+        });
+    }
+});
+
+router.put('/updateCategory', upload.single('category_image'), async (req, res) => {
+    try {
+        const { category_name, description, id } = req.body;
+        const updateData = { category_name, description };
+
+        if (req.file) {
+            updateData.category_image = req.file.filename;
+        }
+
+        const updatedCategory = await Category.findByIdAndUpdate(
+            id,
+            updateData,
+            { new: true }
+        );
+
+        if (!updatedCategory) {
+            return res.json({
+                success: false,
+                message: "Category not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Category updated successfully",
+            data: updatedCategory
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: "Error updating category: " + error.message
+        });
+    }
+});
+
+
+router.delete('/deleteCategory', async (req, res) => {
+    try {
+        const {id} = req.body;
+        const deletedCategory = await Category.findByIdAndDelete(id);
+        if (!deletedCategory) {
+            return res.json({
+                success: false,
+                message: "Category not found"
+            });
+        }
+        res.json({
+            success: true,
+            message: "Category deleted successfully"
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: "Error deleting category: " + error.message
         });
     }
 });
