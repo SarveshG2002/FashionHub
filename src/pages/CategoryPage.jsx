@@ -9,6 +9,9 @@ function Component() {
     const [categoryImage, setCategoryImage] = useState(null);
     const [categoryDesc, setCategoryDesc] = useState("");
     const [categoryList, setCategoryList] = useState([]);
+    const [editingId, setEditingId] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
 
     useEffect(() => {
         getAllCategories();
@@ -37,7 +40,7 @@ function Component() {
                 }
             });
 
-            if(response.data.success){
+            if (response.data.success) {
                 console.log(response);
                 // Handle success (e.g., show a success message, clear the form)
                 // alert("Category added successfully!");
@@ -47,7 +50,7 @@ function Component() {
                 setCategoryDesc("");
             }
 
-            
+
 
         } catch (error) {
             console.error("Error adding category:", error);
@@ -69,12 +72,112 @@ function Component() {
         }
     };
 
+    const setEditData = async (key) => {
+        if (showModal) {
+
+        } else {
+            console.log(categoryList[key])
+            setCategoryName(categoryList[key].category_name)
+            setEditingId(categoryList[key]["_id"])
+            // setCategoryImage(categoryList)
+            setCategoryDesc(categoryList[key].description)
+
+        }
+        setShowModal(!showModal)
+
+    }
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        console.log("hello");
+        // try {
+        //     console.log("Form Submitted");
+        //     const response = await axios.post(`${BASE_URL}/brands/updateBrand`, {
+        //         brand_name: brandName,
+        //         id:editingId
+        //     });
+
+        //     console.log(response.data);
+        //     if(response.data.success){
+        //         // setBrands(prevBrands => [...prevBrands, response.data.data]);
+        //         getAllbrands();
+        //         // Clear the input field after successful submission
+        //         setBrandName("");
+        //         setShowModal(!showModal)
+        //     }
+            
+
+        // } catch (error) {
+        //     console.error("Error during login:", error);
+        //     // setError('An error occurred. Please try again.');
+        // }
+    };
+
     // const handleImageChange = (e) => {
     //     setCategoryImage(e.target.files[0]);
     // };
 
     return (
         <>
+            {showModal && (
+                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-lg" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Edit {pageName}</h5>
+                                <button type="button" className="close" onClick={setEditData}>
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form className="col-md-12 row" encType="multipart/form-data" onSubmit={handleEdit}>
+                                    <div className="col-md-12 row">
+                                        <div className="col-md-6 form-group">
+                                            <label htmlFor="category_name">{pageName} Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="category_name"
+                                                name="category_name"
+                                                placeholder="Enter Here"
+                                                value={categoryName}
+                                                onChange={(e) => setCategoryName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="col-md-6 form-group">
+                                            <label htmlFor="category_image">{pageName} Image</label>
+                                            <input
+                                                type="file"
+                                                className="form-control"
+                                                id="category_image"
+                                                name="category_image"
+                                                onChange={(e) => setCategoryImage(e.target.files[0])}
+                                            />
+                                        </div>
+                                        <div className="col-md-6 form-group">
+                                            <label htmlFor="category_desc">{pageName} Description</label>
+                                            <textarea
+                                                className="form-control"
+                                                id="category_desc"
+                                                name="category_desc"
+                                                placeholder="Enter Here"
+                                                value={categoryDesc}
+                                                onChange={(e) => setCategoryDesc(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className="col-md-12 mt-3 form-group">
+                                            <input type="submit" name="submit" value="Add" className="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showModal && <div className="modal-backdrop fade show"></div>}
             <div className="card">
                 <div className="card-header">
                     Add {pageName}
@@ -101,7 +204,7 @@ function Component() {
                                     className="form-control"
                                     id="category_image"
                                     name="category_image"
-                                    onChange={(e)=>setCategoryImage(e.target.files[0])}
+                                    onChange={(e) => setCategoryImage(e.target.files[0])}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
