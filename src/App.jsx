@@ -20,6 +20,11 @@ function App() {
           <Route path="users" element={<UserComponent />} />
           <Route path="seo" element={<SeoComponent />} />
           <Route path="category" element={<CategoryComponent />} />
+          <Route path="products" element={<CategoryComponent />} />
+          <Route path="varients" element={<CategoryComponent />} />
+          <Route path="coupons" element={<CategoryComponent />} />
+          <Route path="orders" element={<CategoryComponent />} />
+          <Route path="cancelled_orders" element={<CategoryComponent />} />
 
           {/* Add more nested routes here as needed */}
         </Route>

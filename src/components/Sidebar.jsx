@@ -6,10 +6,15 @@ const Sidebar = () => {
 
   const navItems = [
     { name: "Dashboard", path: "/admin/dashboard" },
-    { name: "Users", path: "/admin/users" },
-    { name: "SEO", path: "/admin/seo" },
     { name: "Brands", path: "/admin/brands"},
-    { name: "Category", path: "/admin/category"}
+    { name: "Category", path: "/admin/category"},
+    { name: "Products", path: "/admin/products"},
+    { name: "Variants", path: "/admin/varients"},
+    { name: "Users", path: "/admin/users" },
+    { name: "Coupons", path: "/admin/coupons"},
+    { name: "Orders", path: "/admin/orders"},
+    { name: "Cancelled Orders", path: "/admin/cancelled_orders"},
+    { name: "SEO", path: "/admin/seo" },
   ];
 
   return (
