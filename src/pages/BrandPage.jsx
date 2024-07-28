@@ -164,9 +164,10 @@ function Component() {
                     </form>
                 </div>
             </div>
+            <br />
             <div className="card">
                 <div className="card-header">
-                    Brand List
+                    {pageName} List
                 </div>
                 <div className="card-body table-responsive">
                     <table className="table table-striped table-hover">
@@ -176,7 +177,7 @@ function Component() {
                                     Sr.
                                 </th>
                                 <th>
-                                    Brand Name
+                                    {pageName} Name
                                 </th>
                                 <th>
                                     Action
@@ -191,7 +192,7 @@ function Component() {
                                     <td>
                                         <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
                                             Edit
-                                        </button>
+                                        </button>&nbsp;
                                         <button className='btn btn-danger' onClick={(e) => deleteBrand(brand._id, e)}>
                                             Delete
                                         </button>
