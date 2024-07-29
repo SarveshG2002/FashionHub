@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import '../assets/css/layout.css';
+// import {getAllbrands} from '../components/CommonData';
+
 
 function AdminComponent() {
     useEffect(() => {

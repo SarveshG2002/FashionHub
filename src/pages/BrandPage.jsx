@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useEffect, useState } from 'react';
+import {getAllbrands} from '../components/CommonData';
 
 function Component() {
 
@@ -12,17 +13,11 @@ function Component() {
 
     const [showModal, setShowModal] = useState(false);
     useEffect(() => {
-        getAllbrands();
+        initiate();
     }, [])
 
-    const getAllbrands = async () => {
-        try {
-            let brands = await axios.post(`${BASE_URL}/brands/getAllBrands`);
-            console.log(brands);
-            setBrands(brands.data.data);
-        } catch (error) {
-            console.log(error);
-        }
+    const initiate = async () => {
+        setBrands(await getAllbrands());
     }
 
 

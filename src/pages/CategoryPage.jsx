@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
+import {getAllCategories} from '../components/CommonData';
 
 function Component() {
     const [pageName] = useState("Category");
@@ -14,17 +15,12 @@ function Component() {
 
 
     useEffect(() => {
-        getAllCategories();
+        initiate();
     }, []);
 
-    const getAllCategories = async (e) => {
-        const response = await axios.get(`${BASE_URL}/category/getAllCategories`);
-        // console.log(response);
-        if (response.data.success) {
-            setCategoryList(response.data.data)
-        }
-
-    };
+    const initiate = async () => {
+        setCategoryList(await getAllCategories());
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
