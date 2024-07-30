@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import Admins from './Models/Admins.js'
 import brandRouter from './Routes/brandRoute.js';
 import categoryRouter from './Routes/categoryRoute.js';
+import productRouter from './Routes/productRoute.js';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -27,6 +28,8 @@ db.once('open', () => {
 
 app.use('/brands', brandRouter);
 app.use('/category', categoryRouter);
+app.use('/products', productRouter);
+
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');

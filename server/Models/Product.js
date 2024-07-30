@@ -34,6 +34,10 @@ const categorySchema = new mongoose.Schema({
   image4 : {
     type : String,
     required : true,
+  },
+  description : {
+    type : String,
+    required : true,
   }
 }, { timestamps: true });
 
