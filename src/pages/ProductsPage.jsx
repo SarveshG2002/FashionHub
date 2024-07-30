@@ -12,6 +12,7 @@ function Component() {
     const [categoryid, setCategoryId] = useState("");
     const [brandLists, setBrandList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
+    const [productList, setProductList] = useState([]);
     const [productImage, setProductImage] = useState(null);
     const [productImage1, setProductImage1] = useState(null);
     const [productImage2, setProductImage2] = useState(null);
@@ -26,7 +27,7 @@ function Component() {
     const initiate = async () => {
         setBrandList(await getAllbrands());
         setCategoryList(await getAllCategories());
-
+        setProductList(await getAllProducts());
     }
 
     const handleSubmit = async (e) => {
@@ -220,21 +221,21 @@ function Component() {
                             </tr>
                         </thead>
                         <tbody>
-                            {categoryList.map((category, key) => (
+                            {productList.map((product, key) => (
                                 <tr key={key}>
                                     <td>{key + 1}</td>
-                                    <td>{category.category_name}</td>
+                                    <td>{product.product_name}</td>
                                     <td>
-                                        <img src={`../server/uploads/categories/${category.category_image}`} alt={category.category_name} style={{ width: "150px" }} />
+                                        <img src={`../server/uploads/products/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
                                     </td>
                                     <td>
-                                        {category.description}
+                                        {product.description}
                                     </td>
                                     <td>
                                         <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
                                             Edit
                                         </button>&nbsp;
-                                        <button className='btn btn-danger' onClick={(e) => deleteCategory(category._id, e)}>
+                                        <button className='btn btn-danger' onClick={(e) => deleteCategory(product._id, e)}>
                                             Delete
                                         </button>
                                     </td>

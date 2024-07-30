@@ -21,19 +21,19 @@ const categorySchema = new mongoose.Schema({
   },
   image1 : {
     type : String,
-    required : true,
+    required : false,
   },
   image2 : {
     type : String,
-    required : true,
+    required : false,
   },
   image3 : {
     type : String,
-    required : true,
+    required : false,
   },
   image4 : {
     type : String,
-    required : true,
+    required : false,
   },
   description : {
     type : String,
