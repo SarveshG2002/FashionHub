@@ -2,12 +2,26 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
+import { getAllbrands } from '../components/CommonData';
+import { getAllCategories } from '../components/CommonData';
 
 function Component() {
     const [pageName] = useState("Product");
-    const [productName,setProductName] = useState("");
+    const [productName, setProductName] = useState("");
+    const [brandLists, setBrandList] = useState([]);
+    const [categoryList, setCategoryList] = useState([]);
     const [productImage, setProductImage] = useState(null);
     const [productDesc, setProductDesc] = useState("");
+
+    useEffect(() => {
+        initiate();
+    }, []);
+
+    const initiate = async () => {
+        setBrandList(await getAllbrands());
+        setCategoryList(await getAllCategories());
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // try {
@@ -41,7 +55,7 @@ function Component() {
     };
     return (
         <>
-           <div className="card">
+            <div className="card">
                 <div className="card-header">
                     Add {pageName}
                 </div>
@@ -59,6 +73,16 @@ function Component() {
                                     value={productName}
                                     onChange={(e) => setProductName(e.target.value)}
                                 />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="brand">Brand</label>
+                                <select id="brand" name="brand" className='form-control'>
+                                    {brandLists.map((brand) => (
+                                        <option key={brand._id} value={brand._id}>
+                                            {brand.brand_name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="col-md-6 form-group">
                                 <label htmlFor="category_image">{pageName} Image</label>
