@@ -52,15 +52,15 @@ function Component() {
 
             console.log(response)
 
-            // if (response.data.success) {
-            //     // console.log(response);
-            //     // Handle success (e.g., show a success message, clear the form)
-            //     // alert("Category added successfully!");
-            //     setCategoryList(prevCategory => [...prevCategory, response.data.data]);
-            //     setCategoryName("");
-            //     setCategoryImage(null);
-            //     setCategoryDesc("");
-            // }
+            if (response.data.success) {
+                // console.log(response);
+                // Handle success (e.g., show a success message, clear the form)
+                // alert("Category added successfully!");
+                setProductList(prevProducts => [...prevProducts, response.data.data]);
+                // setCategoryName("");
+                // setCategoryImage(null);
+                // setCategoryDesc("");
+            }
 
 
 
@@ -226,7 +226,7 @@ function Component() {
                                     <td>{key + 1}</td>
                                     <td>{product.product_name}</td>
                                     <td>
-                                        <img src={`../server/uploads/products/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
+                                        <img src={`../server/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
                                     </td>
                                     <td>
                                         {product.description}

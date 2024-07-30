@@ -34,11 +34,11 @@ productRouter.post('/addProduct', upload.fields([
             brand_id,
             category_id,
             description,
-            image: images.image ? images.image[0].path : '',
-            image1: images.image1 ? images.image1[0].path : '',
-            image2: images.image2 ? images.image2[0].path : '',
-            image3: images.image3 ? images.image3[0].path : '',
-            image4: images.image4 ? images.image4[0].path : ''
+            image: images.image ? path.basename(images.image[0].path) : '',
+            image1: images.image1 ? path.basename(images.image1[0].path) : '',
+            image2: images.image2 ? path.basename(images.image2[0].path) : '',
+            image3: images.image3 ? path.basename(images.image3[0].path) : '',
+            image4: images.image4 ? path.basename(images.image4[0].path) : ''
         });
 
         const savedProduct = await newProduct.save();
