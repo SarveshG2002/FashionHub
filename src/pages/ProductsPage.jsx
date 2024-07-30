@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
-import { getAllbrands } from '../components/CommonData';
-import { getAllCategories } from '../components/CommonData';
+import { getAllbrands,getAllCategories } from '../components/CommonData';
+// import {  } from '../components/CommonData';
 
 function Component() {
     const [pageName] = useState("Product");
@@ -11,6 +11,11 @@ function Component() {
     const [brandLists, setBrandList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
     const [productImage, setProductImage] = useState(null);
+    const [productImage1, setProductImage1] = useState(null);
+    const [productImage2, setProductImage2] = useState(null);
+    const [productImage3, setProductImage3] = useState(null);
+    const [productImage4, setProductImage4] = useState(null);
+
     const [productDesc, setProductDesc] = useState("");
 
     useEffect(() => {
@@ -77,9 +82,21 @@ function Component() {
                             <div className="col-md-6 form-group">
                                 <label htmlFor="brand">Brand</label>
                                 <select id="brand" name="brand" className='form-control'>
+                                    <option value="">Select Brand</option>
                                     {brandLists.map((brand) => (
                                         <option key={brand._id} value={brand._id}>
                                             {brand.brand_name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="brand">Categories</label>
+                                <select id="category" name="category" className='form-control'>
+                                    <option value="">Select Category</option>
+                                    {categoryList.map((category) => (
+                                        <option key={category._id} value={category._id}>
+                                            {category.category_name}
                                         </option>
                                     ))}
                                 </select>
@@ -92,6 +109,46 @@ function Component() {
                                     id="category_image"
                                     name="category_image"
                                     onChange={(e) => setProductImage(e.target.files[0])}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="category_image1">{pageName} Image1</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="category_image1"
+                                    name="category_image1"
+                                    onChange={(e) => setProductImage1(e.target.files[0])}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="category_image2">{pageName} Image2</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="category_image2"
+                                    name="category_image2"
+                                    onChange={(e) => setProductImage2(e.target.files[0])}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="category_image3">{pageName} Image3</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="category_image3"
+                                    name="category_image3"
+                                    onChange={(e) => setProductImage3(e.target.files[0])}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="category_image4">{pageName} Image4</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="category_image4"
+                                    name="category_image4"
+                                    onChange={(e) => setProductImage4(e.target.files[0])}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
