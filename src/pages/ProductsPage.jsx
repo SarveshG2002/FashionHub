@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
-import { getAllbrands,getAllCategories } from '../components/CommonData';
+import { getAllbrands, getAllCategories, getAllProducts } from '../components/CommonData';
 // import {  } from '../components/CommonData';
 
 function Component() {
@@ -26,6 +26,7 @@ function Component() {
     const initiate = async () => {
         setBrandList(await getAllbrands());
         setCategoryList(await getAllCategories());
+
     }
 
     const handleSubmit = async (e) => {
@@ -90,7 +91,13 @@ function Component() {
                             </div>
                             <div className="col-md-6 form-group">
                                 <label htmlFor="brand">Brand</label>
-                                <select id="brand" name="brand" className='form-control'>
+                                <select
+                                    id="brand"
+                                    name="brand"
+                                    className='form-control'
+                                    value={brandid}
+                                    onChange={(e) => setBrandId(e.target.value)}
+                                >
                                     <option value="">Select Brand</option>
                                     {brandLists.map((brand) => (
                                         <option key={brand._id} value={brand._id}>
@@ -100,8 +107,14 @@ function Component() {
                                 </select>
                             </div>
                             <div className="col-md-6 form-group">
-                                <label htmlFor="brand">Categories</label>
-                                <select id="category" name="category" className='form-control'>
+                                <label htmlFor="category">Category</label>
+                                <select
+                                    id="category"
+                                    name="category"
+                                    className='form-control'
+                                    value={categoryid}
+                                    onChange={(e) => setCategoryId(e.target.value)}
+                                >
                                     <option value="">Select Category</option>
                                     {categoryList.map((category) => (
                                         <option key={category._id} value={category._id}>
