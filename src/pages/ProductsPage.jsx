@@ -179,6 +179,59 @@ function Component() {
                     </form>
                 </div>
             </div>
+
+            <br />
+            <div className="card">
+                <div className="card-header">
+                    {pageName} List
+                </div>
+                <div className="card-body table-responsive">
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sr.
+                                </th>
+                                <th>
+                                    {pageName} Name
+                                </th>
+                                <th>
+                                    {pageName} Image
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {categoryList.map((category, key) => (
+                                <tr key={key}>
+                                    <td>{key + 1}</td>
+                                    <td>{category.category_name}</td>
+                                    <td>
+                                        <img src={`../server/uploads/categories/${category.category_image}`} alt={category.category_name} style={{ width: "150px" }} />
+                                    </td>
+                                    <td>
+                                        {category.description}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
+                                            Edit
+                                        </button>&nbsp;
+                                        <button className='btn btn-danger' onClick={(e) => deleteCategory(category._id, e)}>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </>
     );
 }
