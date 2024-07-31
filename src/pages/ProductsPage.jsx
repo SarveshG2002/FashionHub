@@ -209,8 +209,12 @@ function Component() {
                                 <th>
                                     {pageName} Name
                                 </th>
+                                
                                 <th>
                                     {pageName} Image
+                                </th>
+                                <th>
+                                    Brand
                                 </th>
                                 <th>
                                     Description
@@ -227,6 +231,9 @@ function Component() {
                                     <td>{product.product_name}</td>
                                     <td>
                                         <img src={`../server/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
+                                    </td>
+                                    <td>
+                                    {product.brand_name}
                                     </td>
                                     <td>
                                         {product.description}

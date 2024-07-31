@@ -58,18 +58,48 @@ productRouter.post('/addProduct', upload.fields([
 
 productRouter.get('/getAllProducts', async (req, res) => {
     try {
-        const products = await Product.find();
-        res.json({
-            success: true,
-            data: products
-        });
+      const products = await Product.aggregate([
+        {
+          $lookup: {
+            from: 'brands',
+            let: { brandId: { $toObjectId: '$brand_id' } },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$_id', '$$brandId'] } } }
+            ],
+            as: 'brandDetails'
+          }
+        },
+        {
+          $unwind: '$brandDetails'
+        },
+        {
+          $project: {
+            product_name: 1,
+            brand_id: 1,
+            category_id: 1,
+            image: 1,
+            image1: 1,
+            image2: 1,
+            image3: 1,
+            image4: 1,
+            description: 1,
+            brand_name: '$brandDetails.brand_name'
+          }
+        }
+      ]);
+  
+      res.json({
+        success: true,
+        data: products
+      });
     } catch (error) {
-        res.json({
-            success: false,
-            message: "Error fetching products: " + error.message
-        });
+      res.json({
+        success: false,
+        message: "Error fetching products: " + error.message
+      });
     }
-});
+  });
+  
 
 productRouter.get('/getProductById', async (req, res) => {
     try {
