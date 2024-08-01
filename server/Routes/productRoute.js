@@ -187,7 +187,7 @@ productRouter.get('/getProductById', async (req, res) => {
   }
 });
 
-brandRouter.post('/deleteProduct', async (req, res) => {
+productRouter.post('/deleteProduct', async (req, res) => {
   // console.log("hello");
   try {
       const { id } = req.body; // Extract the brand ID from the request body

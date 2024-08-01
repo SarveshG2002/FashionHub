@@ -72,6 +72,20 @@ function Component() {
         }
     };
 
+    const deleteProduct = async (id, e) => {
+        console.log(id);
+        try {
+            if (window.confirm("Are you sure?")) {
+                await axios.post(`${BASE_URL}/products/deleteProduct`, {
+                    id: id
+                })
+                setProductList(productList.filter(productList => productList._id !== id));
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
 
     const setEditData = async (key) => {
         if (showModal) {
@@ -445,7 +459,7 @@ function Component() {
                                         <button className="btn btn-primary" onClick={(e) => setEditData(key)}>
                                             Edit
                                         </button>&nbsp;
-                                        <button className='btn btn-danger' onClick={(e) => deleteCategory(product._id, e)}>
+                                        <button className='btn btn-danger' onClick={(e) => deleteProduct(product._id, e)}>
                                             Delete
                                         </button>
                                     </td>
