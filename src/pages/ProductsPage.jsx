@@ -217,6 +217,9 @@ function Component() {
                                     Brand
                                 </th>
                                 <th>
+                                    Category
+                                </th>
+                                <th>
                                     Description
                                 </th>
                                 <th>
@@ -234,6 +237,9 @@ function Component() {
                                     </td>
                                     <td>
                                     {product.brand_name}
+                                    </td>
+                                    <td>
+                                        {product.category_name}
                                     </td>
                                     <td>
                                         {product.description}
