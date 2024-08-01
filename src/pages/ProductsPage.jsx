@@ -20,6 +20,7 @@ function Component() {
     const [productImage4, setProductImage4] = useState(null);
     const [productDesc, setProductDesc] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [editingId, setEditingId] = useState(null);
 
     useEffect(() => {
         initiate();
@@ -91,18 +92,30 @@ function Component() {
         console.log("hello");
         try {
             console.log("Form Submitted");
-            const response = await axios.post(`${BASE_URL}/brands/updateBrand`, {
-                brand_name: brandName,
-                id:editingId
+            const formData = new FormData();
+            formData.append('product_name', productName);
+            formData.append('brand_id', brandid);
+            formData.append('category_id', categoryid);
+            formData.append('image', productImage);
+            formData.append('image1', productImage1);
+            formData.append('image2', productImage2);
+            formData.append('image3', productImage3);
+            formData.append('image4', productImage4);
+            formData.append('description', productDesc);
+
+            const response = await axios.post(`${BASE_URL}/products/updateProduct`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
             console.log(response.data);
             if(response.data.success){
                 // setBrands(prevBrands => [...prevBrands, response.data.data]);
-                getAllbrands();
-                // Clear the input field after successful submission
-                setBrandName("");
-                setShowModal(!showModal)
+                // getAllbrands();
+                // // Clear the input field after successful submission
+                // setBrandName("");
+                // setShowModal(!showModal)
             }
             
 
