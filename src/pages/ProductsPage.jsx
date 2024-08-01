@@ -79,7 +79,12 @@ function Component() {
         } else {
             // console.log(brands[key])
             // setBrandName(brands[key].brand_name)
-            // setEditingId(brands[key]["_id"])
+            setEditingId(productList[key]["_id"])
+            setProductName(productList[key]["product_name"])
+            setProductDesc(productList[key]["description"])
+            setBrandId(productList[key]["brand_id"])
+            setCategoryId(productList[key]["category_id"])
+
 
         }
         setShowModal(!showModal)
@@ -102,6 +107,7 @@ function Component() {
             formData.append('image3', productImage3);
             formData.append('image4', productImage4);
             formData.append('description', productDesc);
+            formData.append('id', editingId);
 
             const response = await axios.post(`${BASE_URL}/products/updateProduct`, formData, {
                 headers: {
@@ -115,7 +121,8 @@ function Component() {
                 // getAllbrands();
                 // // Clear the input field after successful submission
                 // setBrandName("");
-                // setShowModal(!showModal)
+                setProductList(await getAllProducts());
+                setShowModal(!showModal)
             }
             
 

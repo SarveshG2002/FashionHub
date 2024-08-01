@@ -55,6 +55,52 @@ productRouter.post('/addProduct', upload.fields([
   }
 });
 
+productRouter.post('/updateProduct', upload.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'image1', maxCount: 1 },
+  { name: 'image2', maxCount: 1 },
+  { name: 'image3', maxCount: 1 },
+  { name: 'image4', maxCount: 1 }
+]), async (req, res) => {
+  const { id, product_name, brand_id, category_id, description } = req.body;
+  const images = req.files;
+
+  try {
+    const updateFields = {
+      product_name,
+      brand_id,
+      category_id,
+      description
+    };
+
+    if (images.image) updateFields.image = path.basename(images.image[0].path);
+    if (images.image1) updateFields.image1 = path.basename(images.image1[0].path);
+    if (images.image2) updateFields.image2 = path.basename(images.image2[0].path);
+    if (images.image3) updateFields.image3 = path.basename(images.image3[0].path);
+    if (images.image4) updateFields.image4 = path.basename(images.image4[0].path);
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, updateFields, { new: true });
+
+    if (updatedProduct) {
+      res.json({
+        success: true,
+        message: "Product updated successfully",
+        data: updatedProduct
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "Product not found"
+      });
+    }
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "Error updating product: " + error.message
+    });
+  }
+});
+
 
 productRouter.get('/getAllProducts', async (req, res) => {
   try {
@@ -97,7 +143,9 @@ productRouter.get('/getAllProducts', async (req, res) => {
           image4: 1,
           description: 1,
           brand_name: '$brandDetails.brand_name',
+          brand_id: '$brandDetails._id',
           category_name: '$categoryDetails.category_name',
+          category_id: '$categoryDetails._id',
           category_image: '$categoryDetails.category_image',
           category_description: '$categoryDetails.description'
         }
