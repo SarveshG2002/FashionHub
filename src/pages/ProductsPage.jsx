@@ -257,7 +257,7 @@ function Component() {
                                         </div>
 
                                         <div className="col-md-12 mt-3 form-group">
-                                            <input type="submit" name="submit" value="Add" className="btn btn-primary" />
+                                            <input type="submit" name="submit" value="Update" className="btn btn-primary" />
                                         </div>
                                     </div>
                                 </form>
@@ -266,6 +266,7 @@ function Component() {
                     </div>
                 </div>
             )}
+            {showModal && <div className="modal-backdrop fade show"></div>}
 
             <div className="card">
                 <div className="card-header">
