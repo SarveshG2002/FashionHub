@@ -187,4 +187,30 @@ productRouter.get('/getProductById', async (req, res) => {
   }
 });
 
+brandRouter.post('/deleteProduct', async (req, res) => {
+  // console.log("hello");
+  try {
+      const { id } = req.body; // Extract the brand ID from the request body
+      const deletedProduct = await Product.findByIdAndDelete(id); // Attempt to find and delete the brand by ID
+
+      if (deletedProduct) {
+          res.json({
+              "success": true,
+              "message": "Product deleted successfully",
+              "data": deletedBrand
+          });
+      } else {
+          res.json({ // Set status to 404 Not Found if the brand was not found
+              "success": false,
+              "message": "Brand not found"
+          });
+      }
+  } catch (err) {
+      res.json({ // Set status to 500 Internal Server Error for other errors
+          "success": false,
+          "message": "Something went wrong: " + err
+      });
+  }
+});
+
 export default productRouter;
