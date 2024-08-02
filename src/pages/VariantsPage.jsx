@@ -8,6 +8,9 @@ function Component() {
     const [productList, setProductList] = useState([]);
     const [categoryName, setCategoryName] = useState("");
     const [productid, setProductId] = useState("");
+    const [regularPrice, setRegularPrice] = useState("");
+    const [sellingPrice, setSellingPrice] = useState("");
+    const [instock, setInstock] = useState("");
     const [varientDesc, setVarientDesc] = useState("");
     useEffect(() => {
         initiate();
@@ -32,12 +35,12 @@ function Component() {
                     <form className="col-md-12 row" encType="multipart/form-data" onSubmit={handleSubmit}>
                         <div className="col-md-12 row">
                             <div className="col-md-6 form-group">
-                                <label htmlFor="category_name">{pageName} Name</label>
+                                <label htmlFor="varient_name">{pageName} Name</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="category_name"
-                                    name="category_name"
+                                    id="varient_name"
+                                    name="varient_name"
                                     placeholder="Enter Here"
                                     value={categoryName}
                                     onChange={(e) => setCategoryName(e.target.value)}
@@ -45,15 +48,15 @@ function Component() {
                             </div>
                             
                             <div className="col-md-6 form-group">
-                                <label htmlFor="category">Category</label>
+                                <label htmlFor="product">Product</label>
                                 <select
-                                    id="category"
-                                    name="category"
+                                    id="product"
+                                    name="product"
                                     className='form-control'
                                     value={productid}
                                     onChange={(e) => setProductId(e.target.value)}
                                 >
-                                    <option value="">Select Category</option>
+                                    <option value="">Select Product</option>
                                     {productList.map((product) => (
                                         <option key={product._id} value={product._id}>
                                             {product.product_name}
@@ -61,13 +64,52 @@ function Component() {
                                     ))}
                                 </select>
                             </div>
+
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="regular_price">Regular Price</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="regular_price"
+                                    name="regular_price"
+                                    placeholder="Enter Here"
+                                    value={regularPrice}
+                                    onChange={(e) => setRegularPrice(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="selling_price">Selling Price</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="selling_price"
+                                    name="selling_price"
+                                    placeholder="Enter Here"
+                                    value={sellingPrice}
+                                    onChange={(e) => setSellingPrice(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="instock">In Stock</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="instock"
+                                    name="instock"
+                                    placeholder="Enter Here"
+                                    value={instock}
+                                    onChange={(e) => setInstock(e.target.value)}
+                                />
+                            </div>
                             
                             <div className="col-md-6 form-group">
-                                <label htmlFor="category_desc">{pageName} Description</label>
+                                <label htmlFor="varient_desc">{pageName} Description</label>
                                 <textarea
                                     className="form-control"
-                                    id="category_desc"
-                                    name="category_desc"
+                                    id="varient_desc"
+                                    name="varient_desc"
                                     placeholder="Enter Here"
                                     value={varientDesc}
                                     onChange={(e) => setVarientDesc(e.target.value)}
