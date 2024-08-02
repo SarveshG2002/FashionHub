@@ -55,13 +55,19 @@ function Component() {
             console.log(response)
 
             if (response.data.success) {
-                // console.log(response);
-                // Handle success (e.g., show a success message, clear the form)
-                // alert("Category added successfully!");
+                
                 setProductList(prevProducts => [...prevProducts, response.data.data]);
-                // setCategoryName("");
-                // setCategoryImage(null);
-                // setCategoryDesc("");
+                setProductName("");
+                setProductDesc("");
+                setProductImage(null);
+                setProductImage1(null);
+                setProductImage2(null);
+                setProductImage3(null);
+                setProductImage4(null);
+                setBrandId("");
+                set
+
+                
             }
 
 
