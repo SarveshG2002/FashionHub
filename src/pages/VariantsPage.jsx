@@ -11,6 +11,10 @@ function Component() {
     const [regularPrice, setRegularPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
     const [instock, setInstock] = useState("");
+    const [height, setHeight] = useState("");
+    const [width, setWidth] = useState("");
+    const [bredth, setBredth] = useState("");
+    const [weight, setWeight] = useState("");
     const [varientDesc, setVarientDesc] = useState("");
     useEffect(() => {
         initiate();
@@ -101,6 +105,54 @@ function Component() {
                                     placeholder="Enter Here"
                                     value={instock}
                                     onChange={(e) => setInstock(e.target.value)}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="instock">Height</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="instock"
+                                    name="instock"
+                                    placeholder="Enter Here"
+                                    value={height}
+                                    onChange={(e) => setHeight(e.target.value)}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="instock">Width</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="instock"
+                                    name="instock"
+                                    placeholder="Enter Here"
+                                    value={width}
+                                    onChange={(e) => setWidth(e.target.value)}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="instock">Bredth</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="instock"
+                                    name="instock"
+                                    placeholder="Enter Here"
+                                    value={bredth}
+                                    onChange={(e) => setBredth(e.target.value)}
+                                />
+                            </div>
+                            <div className="col-md-6 form-group">
+                                <label htmlFor="instock">Weight</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="instock"
+                                    name="instock"
+                                    placeholder="Enter Here"
+                                    value={weight}
+                                    onChange={(e) => setWeight(e.target.value)}
                                 />
                             </div>
                             
