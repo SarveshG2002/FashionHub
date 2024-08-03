@@ -10,6 +10,7 @@ function Component() {
     const [productid, setProductId] = useState("");
     const [regularPrice, setRegularPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
+    const [color, setColor] = useState("");
     const [instock, setInstock] = useState("");
     const [height, setHeight] = useState("");
     const [width, setWidth] = useState("");
@@ -96,60 +97,60 @@ function Component() {
                             </div>
 
                             <div className="col-md-6 form-group">
-                                <label htmlFor="instock">In Stock</label>
+                                <label htmlFor="color">Color</label><br />
                                 <input
-                                    type="text"
-                                    className="form-control"
-                                    id="instock"
-                                    name="instock"
+                                    type="color"
+                                    className=""
+                                    id="color"
+                                    name="color"
                                     placeholder="Enter Here"
-                                    value={instock}
-                                    onChange={(e) => setInstock(e.target.value)}
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
-                                <label htmlFor="instock">Height</label>
+                                <label htmlFor="height">Height</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="instock"
-                                    name="instock"
+                                    id="height"
+                                    name="height"
                                     placeholder="Enter Here"
                                     value={height}
                                     onChange={(e) => setHeight(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
-                                <label htmlFor="instock">Width</label>
+                                <label htmlFor="width">Width</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="instock"
-                                    name="instock"
+                                    id="width"
+                                    name="width"
                                     placeholder="Enter Here"
                                     value={width}
                                     onChange={(e) => setWidth(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
-                                <label htmlFor="instock">Bredth</label>
+                                <label htmlFor="bredth">Bredth</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="instock"
-                                    name="instock"
+                                    id="bredth"
+                                    name="bredth"
                                     placeholder="Enter Here"
                                     value={bredth}
                                     onChange={(e) => setBredth(e.target.value)}
                                 />
                             </div>
                             <div className="col-md-6 form-group">
-                                <label htmlFor="instock">Weight</label>
+                                <label htmlFor="weigth">Weight</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="instock"
-                                    name="instock"
+                                    id="weigth"
+                                    name="weigth"
                                     placeholder="Enter Here"
                                     value={weight}
                                     onChange={(e) => setWeight(e.target.value)}
@@ -166,6 +167,103 @@ function Component() {
                                     value={varientDesc}
                                     onChange={(e) => setVarientDesc(e.target.value)}
                                 />
+                            </div>
+
+                            <div className="card-body table-responsive">
+                                <table className="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                {pageName} Size
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Small (S)
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="smallSizeQuantity"
+                                                    name="smallSizeQuantity"
+                                                    placeholder="Enter Here"
+                                                    value={weight}
+                                                    onChange={(e) => setWeight(e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Medium (M)
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="mediumSizeQuantity"
+                                                    name="mediumSizeQuantity"
+                                                    placeholder="Enter Here"
+                                                    value={weight}
+                                                    onChange={(e) => setWeight(e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Large (L)
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="largeSizeQuantity"
+                                                    name="largeSizeQuantity"
+                                                    placeholder="Enter Here"
+                                                    value={weight}
+                                                    onChange={(e) => setWeight(e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Extra Large (XL)
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="extraLargeSizeQuantity"
+                                                    name="extraLargeSizeQuantity"
+                                                    placeholder="Enter Here"
+                                                    value={weight}
+                                                    onChange={(e) => setWeight(e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Extra Extra Large (XXL)
+                                            </td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="extraExtraLargeSizeQuantity"
+                                                    name="extraExtraLargeSizeQuantity"
+                                                    placeholder="Enter Here"
+                                                    value={weight}
+                                                    onChange={(e) => setWeight(e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div className="col-md-12 mt-3 form-group">

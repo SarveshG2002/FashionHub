@@ -19,13 +19,33 @@ const varientSchema = new mongoose.Schema({
     type : String,
     required : true,
   },
+  color : {
+    type : String,
+    required : true,
+  },
   instock : {
+    type : String,
+    required : true,
+  },
+  height : {
+    type : String,
+    required : true,
+  },
+  width : {
+    type : String,
+    required : true,
+  },
+  bredth : {
+    type : String,
+    required : true,
+  },
+  weight : {
     type : String,
     required : true,
   },
   description : {
     type : String,
-    required : true,
+    required : false,
   }
 }, { timestamps: true });
 
