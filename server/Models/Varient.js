@@ -23,10 +23,6 @@ const varientSchema = new mongoose.Schema({
     type : String,
     required : true,
   },
-  instock : {
-    type : String,
-    required : true,
-  },
   height : {
     type : String,
     required : true,
@@ -46,7 +42,27 @@ const varientSchema = new mongoose.Schema({
   description : {
     type : String,
     required : false,
-  }
+  },
+  smallSizeQuantity : {
+    type : String,
+    required : true,
+  },
+  mediumSizeQuantity : {
+    type : String,
+    required : true,
+  },
+  largeSizeQuantity : {
+    type : String,
+    required : true,
+  },
+  extraLargeSizeQuantity : {
+    type : String,
+    required : true,
+  },
+  extraExtraLargeSizeQuantity : {
+    type : String,
+    required : true,
+  },
 }, { timestamps: true });
 
 // Create and export Admin model
