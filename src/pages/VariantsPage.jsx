@@ -11,12 +11,17 @@ function Component() {
     const [regularPrice, setRegularPrice] = useState("");
     const [sellingPrice, setSellingPrice] = useState("");
     const [color, setColor] = useState("");
-    const [instock, setInstock] = useState("");
     const [height, setHeight] = useState("");
     const [width, setWidth] = useState("");
     const [bredth, setBredth] = useState("");
     const [weight, setWeight] = useState("");
     const [varientDesc, setVarientDesc] = useState("");
+    const [smallSizeQuantity, setSmallSizeQuantity] = useState("0");
+    const [mediumSizeQuantity, setMediumSizeQuantity] = useState("0");
+    const [largeSizeQuantity, setLargeSizeQuantity] = useState("0");
+    const [extraLargeSizeQuantity, setExtraLargeSizeQuantity] = useState("0");
+    const [extraExtraLargeSizeQuantity, setExtraExtraLargeSizeQuantity] = useState("0");
+
     useEffect(() => {
         initiate();
     }, []);
@@ -193,8 +198,8 @@ function Component() {
                                                     id="smallSizeQuantity"
                                                     name="smallSizeQuantity"
                                                     placeholder="Enter Here"
-                                                    value={weight}
-                                                    onChange={(e) => setWeight(e.target.value)}
+                                                    value={smallSizeQuantity}
+                                                    onChange={(e) => setSmallSizeQuantity(e.target.value)}
                                                 />
                                             </td>
                                         </tr>
@@ -209,8 +214,8 @@ function Component() {
                                                     id="mediumSizeQuantity"
                                                     name="mediumSizeQuantity"
                                                     placeholder="Enter Here"
-                                                    value={weight}
-                                                    onChange={(e) => setWeight(e.target.value)}
+                                                    value={mediumSizeQuantity}
+                                                    onChange={(e) => setMediumSizeQuantity(e.target.value)}
                                                 />
                                             </td>
                                         </tr>
@@ -225,8 +230,8 @@ function Component() {
                                                     id="largeSizeQuantity"
                                                     name="largeSizeQuantity"
                                                     placeholder="Enter Here"
-                                                    value={weight}
-                                                    onChange={(e) => setWeight(e.target.value)}
+                                                    value={largeSizeQuantity}
+                                                    onChange={(e) => setLargeSizeQuantity(e.target.value)}
                                                 />
                                             </td>
                                         </tr>
@@ -241,8 +246,8 @@ function Component() {
                                                     id="extraLargeSizeQuantity"
                                                     name="extraLargeSizeQuantity"
                                                     placeholder="Enter Here"
-                                                    value={weight}
-                                                    onChange={(e) => setWeight(e.target.value)}
+                                                    value={extraLargeSizeQuantity}
+                                                    onChange={(e) => setExtraLargeSizeQuantity(e.target.value)}
                                                 />
                                             </td>
                                         </tr>
@@ -257,8 +262,8 @@ function Component() {
                                                     id="extraExtraLargeSizeQuantity"
                                                     name="extraExtraLargeSizeQuantity"
                                                     placeholder="Enter Here"
-                                                    value={weight}
-                                                    onChange={(e) => setWeight(e.target.value)}
+                                                    value={extraExtraLargeSizeQuantity}
+                                                    onChange={(e) => setExtraExtraLargeSizeQuantity(e.target.value)}
                                                 />
                                             </td>
                                         </tr>
