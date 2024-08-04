@@ -49,6 +49,7 @@ varientRouter.post('/addVarient', async (req, res) => {
       data: savedVarient
     });
   } catch (error) {
+    console.log(error)
     res.json({
       success: false,
       message: "Error adding varient: " + error.message

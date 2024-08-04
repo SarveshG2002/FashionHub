@@ -34,6 +34,38 @@ function Component() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
+        // try {
+            console.log("Form Submitted");
+            console.log(product)
+            const response = await axios.post(`${BASE_URL}/varients/addVarient`, {
+                varient_name: categoryName,
+                product: productid,
+                selling_price: sellingPrice,
+                regular_price:regularPrice,
+                color:color,
+                height:height,
+                width:width,
+                bredth:bredth,
+                weight:weight,
+                description:varientDesc,
+                smallSizeQuantity:smallSizeQuantity,
+                mediumSizeQuantity:mediumSizeQuantity,
+                largeSizeQuantity:largeSizeQuantity,
+                extraLargeSizeQuantity:extraLargeSizeQuantity,
+                extraExtraLargeSizeQuantity:extraExtraLargeSizeQuantity
+            });
+            console.log("Form Submitted");
+
+            console.log(response.data);
+            // setBrands(prevBrands => [...prevBrands, response.data.data]);
+
+            // Clear the input field after successful submission
+            // setBrandName("");
+
+        // } catch (error) {
+        //     console.error("Error during login:", error);
+        //     // setError('An error occurred. Please try again.');
+        // }
     }
     return (
         <>

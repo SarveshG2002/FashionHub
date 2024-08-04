@@ -6,6 +6,7 @@ import Admins from './Models/Admins.js'
 import brandRouter from './Routes/brandRoute.js';
 import categoryRouter from './Routes/categoryRoute.js';
 import productRouter from './Routes/productRoute.js';
+import varientRouter from './Routes/varientRoute.js';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -30,6 +31,7 @@ db.once('open', () => {
 app.use('/brands', brandRouter);
 app.use('/category', categoryRouter);
 app.use('/products', productRouter);
+app.use('/varients', varientRouter);
 
 
 app.get('/', (req, res) => {
