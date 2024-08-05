@@ -57,4 +57,20 @@ varientRouter.post('/addVarient', async (req, res) => {
   }
 });
 
+varientRouter.get('/getAllVarients', async (req, res) => {
+  try {
+    const varients = await Varient.find();
+    res.json({
+      success: true,
+      data: varients
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      message: "Error fetching varients: " + error.message
+    });
+  }
+});
+
 export default varientRouter;
