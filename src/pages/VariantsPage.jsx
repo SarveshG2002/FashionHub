@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../components/Host.jsx';
 import { useState } from 'react';
-import { getAllbrands, getAllCategories, getAllProducts } from '../components/CommonData';
+import { getAllVarients, getAllProducts } from '../components/CommonData';
 function Component() {
     const [pageName] = useState("Varients");
     const [productList, setProductList] = useState([]);
+    const [varientList, setVarientList] = useState([]);
     const [categoryName, setCategoryName] = useState("");
     const [productid, setProductId] = useState("");
     const [regularPrice, setRegularPrice] = useState("");
@@ -30,37 +31,39 @@ function Component() {
         // setBrandList(await getAllbrands());
         // setCategoryList(await getAllCategories());
         setProductList(await getAllProducts());
+        setVarientList(await getAllVarients());
+        console.log("varientList", varientList)
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         // try {
-            console.log("Form Submitted");
-            console.log(product)
-            const response = await axios.post(`${BASE_URL}/varients/addVarient`, {
-                varient_name: categoryName,
-                product: productid,
-                selling_price: sellingPrice,
-                regular_price:regularPrice,
-                color:color,
-                height:height,
-                width:width,
-                bredth:bredth,
-                weight:weight,
-                description:varientDesc,
-                smallSizeQuantity:smallSizeQuantity,
-                mediumSizeQuantity:mediumSizeQuantity,
-                largeSizeQuantity:largeSizeQuantity,
-                extraLargeSizeQuantity:extraLargeSizeQuantity,
-                extraExtraLargeSizeQuantity:extraExtraLargeSizeQuantity
-            });
-            console.log("Form Submitted");
+        console.log("Form Submitted");
+        console.log(color)
+        const response = await axios.post(`${BASE_URL}/varients/addVarient`, {
+            varient_name: categoryName,
+            product: productid,
+            selling_price: sellingPrice,
+            regular_price: regularPrice,
+            color: color,
+            height: height,
+            width: width,
+            bredth: bredth,
+            weight: weight,
+            description: varientDesc,
+            smallSizeQuantity: smallSizeQuantity,
+            mediumSizeQuantity: mediumSizeQuantity,
+            largeSizeQuantity: largeSizeQuantity,
+            extraLargeSizeQuantity: extraLargeSizeQuantity,
+            extraExtraLargeSizeQuantity: extraExtraLargeSizeQuantity
+        });
+        console.log("Form Submitted");
 
-            console.log(response.data);
-            // setBrands(prevBrands => [...prevBrands, response.data.data]);
+        console.log(response.data);
+        // setBrands(prevBrands => [...prevBrands, response.data.data]);
 
-            // Clear the input field after successful submission
-            // setBrandName("");
+        // Clear the input field after successful submission
+        // setBrandName("");
 
         // } catch (error) {
         //     console.error("Error during login:", error);
@@ -69,7 +72,7 @@ function Component() {
     }
     return (
         <>
-           <div className="card">
+            <div className="card">
                 <div className="card-header">
                     Add {pageName}
                 </div>
@@ -88,7 +91,7 @@ function Component() {
                                     onChange={(e) => setCategoryName(e.target.value)}
                                 />
                             </div>
-                            
+
                             <div className="col-md-6 form-group">
                                 <label htmlFor="product">Product</label>
                                 <select
@@ -193,7 +196,7 @@ function Component() {
                                     onChange={(e) => setWeight(e.target.value)}
                                 />
                             </div>
-                            
+
                             <div className="col-md-6 form-group">
                                 <label htmlFor="varient_desc">{pageName} Description</label>
                                 <textarea
@@ -310,6 +313,79 @@ function Component() {
                     </form>
                 </div>
             </div>
+
+            <div className="card">
+                <div className="card-header">
+                    Add {pageName}
+                </div>
+                <div className="card-body">
+                    <div className='table-responsive'>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Sr.
+                                    </th>
+                                    <th>
+                                        Product
+                                    </th>
+                                    <th>
+                                        Varient
+                                    </th>
+                                    <th>
+                                        Regular Price
+                                    </th>
+                                    <th>
+                                        Selling Price
+                                    </th>
+                                    <th>
+                                        Color
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    varientList.map((varient, key) => (
+                                        <tr key={key}>
+                                            <td>
+                                                {key + 1}
+                                            </td>
+                                            <td>
+                                                {varient.product}
+                                            </td>
+                                            <td>
+                                                {varient.varient_name}
+                                            </td>
+                                            <td>
+                                                {varient.regular_price}
+                                            </td>
+                                            <td>
+                                                {varient.selling_price}
+                                            </td>
+                                            <td>
+                                                {varient.color}
+                                            </td>
+                                            <td>
+                                                <button className="btn btn-primary" >
+                                                    Edit
+                                                </button>&nbsp;
+                                                <button className='btn btn-danger' >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </>
     );
 }

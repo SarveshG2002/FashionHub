@@ -42,3 +42,17 @@ export const getAllProducts = async () => {
     }
 }
 
+export const getAllVarients = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/varients/getAllVarients`);
+        if (response.data.success) {
+            console.log("", response);
+            return response.data.data;
+        } else {
+            throw new Error('Failed to fetch categories');
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
