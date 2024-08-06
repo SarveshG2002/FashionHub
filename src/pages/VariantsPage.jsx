@@ -77,7 +77,7 @@ function Component() {
 
             {showModal && (
                 <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
-                    <div className="modal-dialog modal-lg" role="document">
+                    <div className="modal-dialog modal-lg " style={{ maxHeight: '90vh', overflowY: 'auto' }} role="document">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">Edit {pageName}</h5>
