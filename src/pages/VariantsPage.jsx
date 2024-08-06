@@ -24,6 +24,7 @@ function Component() {
     const [extraExtraLargeSizeQuantity, setExtraExtraLargeSizeQuantity] = useState("0");
 
     const [showModal, setShowModal] = useState(false);
+    const [editingId, setEditingId] = useState(null);
 
     useEffect(() => {
         initiate();
@@ -112,10 +113,52 @@ function Component() {
             setExtraLargeSizeQuantity(varientList[key].extraLargeSizeQuantity)
             setExtraExtraLargeSizeQuantity(varientList[key].extraExtraLargeSizeQuantity)
 
+            setEditingId(varientList[key]._id)
+
 
         }
         setShowModal(!showModal)
 
+    }
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        try {
+        console.log("Form Submitted");
+        console.log(color)
+        const response = await axios.post(`${BASE_URL}/varients/updateVarient`, {
+            id:editingId,
+            varient_name: categoryName,
+            product: productid,
+            selling_price: sellingPrice,
+            regular_price: regularPrice,
+            color: color,
+            height: height,
+            width: width,
+            bredth: bredth,
+            weight: weight,
+            description: varientDesc,
+            smallSizeQuantity: smallSizeQuantity,
+            mediumSizeQuantity: mediumSizeQuantity,
+            largeSizeQuantity: largeSizeQuantity,
+            extraLargeSizeQuantity: extraLargeSizeQuantity,
+            extraExtraLargeSizeQuantity: extraExtraLargeSizeQuantity
+        });
+        console.log("Form Submitted");
+
+        console.log(response.data);
+        resetForm();
+        setVarientList(await getAllVarients());
+        setShowModal(!showModal)
+        
+
+        // Clear the input field after successful submission
+        // setBrandName("");
+
+        } catch (error) {
+            console.error("Error during login:", error);
+            // setError('An error occurred. Please try again.');
+        }
     }
     return (
         <>
