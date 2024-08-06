@@ -36,10 +36,27 @@ function Component() {
         setVarientList(await getAllVarients());
         console.log("varientList", varientList)
     }
+    const resetForm = () => {
+        setCategoryName('');
+        setProductId('');
+        setRegularPrice('');
+        setSellingPrice('');
+        setColor('');
+        setHeight('');
+        setWidth('');
+        setBredth('');
+        setWeight('');
+        setVarientDesc('');
+        setSmallSizeQuantity('');
+        setMediumSizeQuantity('');
+        setLargeSizeQuantity('');
+        setExtraLargeSizeQuantity('');
+        setExtraExtraLargeSizeQuantity('');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
+        try {
         console.log("Form Submitted");
         console.log(color)
         const response = await axios.post(`${BASE_URL}/varients/addVarient`, {
@@ -62,15 +79,15 @@ function Component() {
         console.log("Form Submitted");
 
         console.log(response.data);
-        // setBrands(prevBrands => [...prevBrands, response.data.data]);
+        resetForm();
 
         // Clear the input field after successful submission
         // setBrandName("");
 
-        // } catch (error) {
-        //     console.error("Error during login:", error);
-        //     // setError('An error occurred. Please try again.');
-        // }
+        } catch (error) {
+            console.error("Error during login:", error);
+            // setError('An error occurred. Please try again.');
+        }
     }
     const setEditData = async (key) => {
         if (showModal) {
@@ -109,7 +126,7 @@ function Component() {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">Edit {pageName}</h5>
-                                <button type="button" className="close">
+                                <button type="button" className="close" onClick={setEditData}>
                                     <span>&times;</span>
                                 </button>
                             </div>
