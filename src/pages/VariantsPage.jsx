@@ -23,7 +23,7 @@ function Component() {
     const [extraLargeSizeQuantity, setExtraLargeSizeQuantity] = useState("0");
     const [extraExtraLargeSizeQuantity, setExtraExtraLargeSizeQuantity] = useState("0");
 
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         initiate();
@@ -71,6 +71,34 @@ function Component() {
         //     console.error("Error during login:", error);
         //     // setError('An error occurred. Please try again.');
         // }
+    }
+    const setEditData = async (key) => {
+        if (showModal) {
+
+        } else {
+            console.log(varientList[key])
+            // setBrandName(brands[key].brand_name)
+            // setEditingId(brands[key]["_id"])
+            setCategoryName(varientList[key].varient_name)
+            setProductId(varientList[key].product)
+            setRegularPrice(varientList[key].regular_price)
+            setSellingPrice(varientList[key].selling_price)
+            setColor(varientList[key].color)
+            setHeight(varientList[key].height)
+            setWidth(varientList[key].width)
+            setBredth(varientList[key].bredth)
+            setWeight(varientList[key].weight)
+            setVarientDesc(varientList[key].description)
+            setSmallSizeQuantity(varientList[key].smallSizeQuantity)
+            setMediumSizeQuantity(varientList[key].mediumSizeQuantity)
+            setLargeSizeQuantity(varientList[key].largeSizeQuantity)
+            setExtraLargeSizeQuantity(varientList[key].extraLargeSizeQuantity)
+            setExtraExtraLargeSizeQuantity(varientList[key].extraExtraLargeSizeQuantity)
+
+
+        }
+        setShowModal(!showModal)
+
     }
     return (
         <>
@@ -627,7 +655,7 @@ function Component() {
                                                 {varient.color}
                                             </td>
                                             <td>
-                                                <button className="btn btn-primary" >
+                                                <button className="btn btn-primary"  onClick={(e) => setEditData(key)}>
                                                     Edit
                                                 </button>&nbsp;
                                                 <button className='btn btn-danger' >
