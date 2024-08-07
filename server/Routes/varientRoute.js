@@ -117,6 +117,33 @@ varientRouter.post('/updateVarient', async (req, res) => {
   }
 });
 
+
+varientRouter.post('/deleteVarient', async (req, res) => {
+  console.log("hello");
+  try {
+      const { id } = req.body; // Extract the brand ID from the request body
+      const deletedVarient = await Varient.findByIdAndDelete(id); // Attempt to find and delete the brand by ID
+
+      if (deletedVarient) {
+          res.json({
+              "success": true,
+              "message": "Varient deleted successfully",
+              "data": deletedVarient
+          });
+      } else {
+          res.json({ // Set status to 404 Not Found if the brand was not found
+              "success": false,
+              "message": "Varient not found"
+          });
+      }
+  } catch (err) {
+      res.json({ // Set status to 500 Internal Server Error for other errors
+          "success": false,
+          "message": "Something went wrong: " + err
+      });
+  }
+});
+
 varientRouter.get('/getAllVarients', async (req, res) => {
   try {
     const varients = await Varient.find();

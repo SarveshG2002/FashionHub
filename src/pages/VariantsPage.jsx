@@ -121,6 +121,20 @@ function Component() {
 
     }
 
+    const deletedVarient = async (id, e) => {
+        console.log(id);
+        try {
+            if (window.confirm("Are you sure?")) {
+                await axios.post(`${BASE_URL}/varients/deleteVarient`, {
+                    id: id
+                })
+                setVarientList(varientList.filter(varient => varient._id !== id));
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
     const handleEdit = async (e) => {
         e.preventDefault();
         try {
@@ -718,7 +732,7 @@ function Component() {
                                                 <button className="btn btn-primary"  onClick={(e) => setEditData(key)}>
                                                     Edit
                                                 </button>&nbsp;
-                                                <button className='btn btn-danger' >
+                                                <button className='btn btn-danger' onClick={(e) => deletedVarient(varient._id, e)}>
                                                     Delete
                                                 </button>
                                             </td>
