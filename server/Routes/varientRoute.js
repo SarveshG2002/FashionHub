@@ -57,6 +57,66 @@ varientRouter.post('/addVarient', async (req, res) => {
   }
 });
 
+
+
+varientRouter.post('/updateVarient', async (req, res) => {
+  try {
+    const {
+      varient_name,
+      product,
+      selling_price,
+      regular_price,
+      color,
+      height,
+      width,
+      bredth,
+      weight,
+      description,
+      smallSizeQuantity,
+      mediumSizeQuantity,
+      largeSizeQuantity,
+      extraLargeSizeQuantity,
+      extraExtraLargeSizeQuantity,
+      id
+    } = req.body; // Extract the brand ID and new brand name from the request body
+
+      const updatedBrand = await Varient.findByIdAndUpdate(id, { 
+        varient_name,
+        product,
+        selling_price,
+        regular_price,
+        color,
+        height,
+        width,
+        bredth,
+        weight,
+        description,
+        smallSizeQuantity,
+        mediumSizeQuantity,
+        largeSizeQuantity,
+        extraLargeSizeQuantity,
+        extraExtraLargeSizeQuantity }, { new: true }); // Attempt to find and update the brand by ID
+
+      if (updatedBrand) {
+          res.json({
+              "success": true,
+              "message": "Varient updated successfully",
+              "data": updatedBrand
+          });
+      } else {
+          res.json({ // Set status to 404 Not Found if the brand was not found
+              "success": false,
+              "message": "Varient not found"
+          });
+      }
+  } catch (err) {
+      res.json({ // Set status to 500 Internal Server Error for other errors
+          "success": false,
+          "message": "Something went wrong: " + err
+      });
+  }
+});
+
 varientRouter.get('/getAllVarients', async (req, res) => {
   try {
     const varients = await Varient.find();

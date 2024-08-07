@@ -174,7 +174,7 @@ function Component() {
                                 </button>
                             </div>
                             <div className="modal-body">
-                            <form className="col-md-12 row" encType="multipart/form-data" onSubmit={handleSubmit}>
+                            <form className="col-md-12 row" encType="multipart/form-data" onSubmit={handleEdit}>
                         <div className="col-md-12 row">
                             <div className="col-md-6 form-group">
                                 <label htmlFor="varient_name">{pageName} Name</label>
@@ -404,7 +404,7 @@ function Component() {
                             </div>
 
                             <div className="col-md-12 mt-3 form-group">
-                                <input type="submit" name="submit" value="Add" className="btn btn-primary" />
+                                <input type="submit" name="submit" value="Update" className="btn btn-primary" />
                             </div>
                         </div>
                     </form>
