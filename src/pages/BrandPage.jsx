@@ -83,7 +83,7 @@ function Component() {
             console.log(response.data);
             if(response.data.success){
                 // setBrands(prevBrands => [...prevBrands, response.data.data]);
-                getAllbrands();
+                setBrands(await getAllbrands());
                 // Clear the input field after successful submission
                 setBrandName("");
                 setShowModal(!showModal)

@@ -34,6 +34,8 @@ productRouter.post('/addProduct', upload.fields([
       brand_id,
       category_id,
       description,
+      men,
+      women,
       image: images.image ? path.basename(images.image[0].path) : '',
       image1: images.image1 ? path.basename(images.image1[0].path) : '',
       image2: images.image2 ? path.basename(images.image2[0].path) : '',
@@ -70,7 +72,9 @@ productRouter.post('/updateProduct', upload.fields([
       product_name,
       brand_id,
       category_id,
-      description
+      description,
+      men,
+      women
     };
 
     if (images.image) updateFields.image = path.basename(images.image[0].path);

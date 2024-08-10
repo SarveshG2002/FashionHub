@@ -22,6 +22,10 @@ function Component() {
     const [showModal, setShowModal] = useState(false);
     const [editingId, setEditingId] = useState(null);
 
+    const [isMenChecked, setIsMenChecked] = useState(false);
+    const [isWomenChecked, setIsWomenChecked] = useState(false);
+
+
     useEffect(() => {
         initiate();
     }, []);
@@ -45,6 +49,9 @@ function Component() {
             formData.append('image3', productImage3);
             formData.append('image4', productImage4);
             formData.append('description', productDesc);
+            formData.append('men', isMenChecked);
+            formData.append('women', isWomenChecked);
+
 
             const response = await axios.post(`${BASE_URL}/products/addProduct`, formData, {
                 headers: {
@@ -127,6 +134,8 @@ function Component() {
             formData.append('image3', productImage3);
             formData.append('image4', productImage4);
             formData.append('description', productDesc);
+            formData.append('men', isMenChecked);
+            formData.append('women', isWomenChecked);
             formData.append('id', editingId);
 
             const response = await axios.post(`${BASE_URL}/products/updateProduct`, formData, {
@@ -403,6 +412,39 @@ function Component() {
                                 />
                             </div>
 
+                            {/* Men and Women Checkboxes */}
+        <div className="col-md-6 form-group">
+            <label>Gender</label>
+            <div className="form-check">
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="men"
+                    name="men"
+                    value="men"
+                    checked={isMenChecked}
+                    onChange={(e) => setIsMenChecked(e.target.checked)}
+                />
+                <label className="form-check-label" htmlFor="men">
+                    Men
+                </label>
+            </div>
+            <div className="form-check">
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="women"
+                    name="women"
+                    value="women"
+                    checked={isWomenChecked}
+                    onChange={(e) => setIsWomenChecked(e.target.checked)}
+                />
+                <label className="form-check-label" htmlFor="women">
+                    Women
+                </label>
+            </div>
+        </div>
+
                             <div className="col-md-12 mt-3 form-group">
                                 <input type="submit" name="submit" value="Add" className="btn btn-primary" />
                             </div>
@@ -450,7 +492,7 @@ function Component() {
                                     <td>{key + 1}</td>
                                     <td>{product.product_name}</td>
                                     <td>
-                                        <img src={`../server/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
+                                        <img src={`../server/uploads/products/${product.image}`} alt={product.product_name} style={{ width: "150px" }} />
                                     </td>
                                     <td>
                                         {product.brand_name}
