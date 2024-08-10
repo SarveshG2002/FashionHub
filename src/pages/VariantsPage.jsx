@@ -81,6 +81,7 @@ function Component() {
 
         console.log(response.data);
         resetForm();
+        setVarientList(await getAllVarients());
 
         // Clear the input field after successful submission
         // setBrandName("");
