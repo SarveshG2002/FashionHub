@@ -17,27 +17,27 @@ const varientSchema = new mongoose.Schema({
   },
   regular_price : {
     type : String,
-    required : true,
+    // required : true,
   },
   color : {
     type : String,
-    required : true,
+    // required : true,
   },
   height : {
     type : String,
-    required : true,
+    // required : true,
   },
   width : {
     type : String,
-    required : true,
+    // required : true,
   },
   bredth : {
     type : String,
-    required : true,
+    // required : true,
   },
   weight : {
     type : String,
-    required : true,
+    // required : true,
   },
   description : {
     type : String,
@@ -45,23 +45,23 @@ const varientSchema = new mongoose.Schema({
   },
   smallSizeQuantity : {
     type : String,
-    required : true,
+    // required : true,
   },
   mediumSizeQuantity : {
     type : String,
-    required : true,
+    // required : true,
   },
   largeSizeQuantity : {
     type : String,
-    required : true,
+    // required : true,
   },
   extraLargeSizeQuantity : {
     type : String,
-    required : true,
+    // required : true,
   },
   extraExtraLargeSizeQuantity : {
     type : String,
-    required : true,
+    // required : true,
   },
 }, { timestamps: true });
 

@@ -146,7 +146,40 @@ varientRouter.post('/deleteVarient', async (req, res) => {
 
 varientRouter.get('/getAllVarients', async (req, res) => {
   try {
-    const varients = await Varient.find();
+    const varients = await Varient.aggregate([
+      {
+        $lookup: {
+          from: "products",
+          let: { productIdStr: "$product" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: ["$_id", { $toObjectId: "$$productIdStr" }]
+                }
+              }
+            }
+          ],
+          as: "product_data"
+        }
+      },
+      {
+        $unwind: "$product_data"
+      },
+      {
+        $replaceRoot: {
+          newRoot: {
+            $mergeObjects: ["$product_data", "$$ROOT"]
+          }
+        }
+      },
+      {
+        $project: {
+          product_data: 0
+        }
+      }
+    ]);
+
     res.json({
       success: true,
       data: varients
@@ -159,5 +192,6 @@ varientRouter.get('/getAllVarients', async (req, res) => {
     });
   }
 });
+
 
 export default varientRouter;

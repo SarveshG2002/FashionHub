@@ -80,7 +80,7 @@ function Component() {
         console.log("Form Submitted");
 
         console.log(response.data);
-        resetForm();
+        // resetForm();
         setVarientList(await getAllVarients());
 
         // Clear the input field after successful submission
@@ -715,7 +715,7 @@ function Component() {
                                                 {key + 1}
                                             </td>
                                             <td>
-                                                {varient.product}
+                                                {varient.product_name}
                                             </td>
                                             <td>
                                                 {varient.varient_name}
