@@ -158,6 +158,44 @@ varientRouter.get('/getAllVarients', async (req, res) => {
                   $eq: ["$_id", { $toObjectId: "$$productIdStr" }]
                 }
               }
+            },
+            {
+              $lookup: {
+                from: "brands",
+                let: { brandIdStr: "$brand_id" }, // Use brand_id from products
+                pipeline: [
+                  {
+                    $match: {
+                      $expr: {
+                        $eq: ["$_id", { $toObjectId: "$$brandIdStr" }]
+                      }
+                    }
+                  }
+                ],
+                as: "brand_data"
+              }
+            },
+            {
+              $lookup: {
+                from: "categories",
+                let: { categoryIdStr: "$category_id" }, // Use category_id from products
+                pipeline: [
+                  {
+                    $match: {
+                      $expr: {
+                        $eq: ["$_id", { $toObjectId: "$$categoryIdStr" }]
+                      }
+                    }
+                  }
+                ],
+                as: "category_data"
+              }
+            },
+            {
+              $unwind: "$brand_data"
+            },
+            {
+              $unwind: "$category_data"
             }
           ],
           as: "product_data"
@@ -192,6 +230,9 @@ varientRouter.get('/getAllVarients', async (req, res) => {
     });
   }
 });
+
+
+
 
 
 export default varientRouter;
