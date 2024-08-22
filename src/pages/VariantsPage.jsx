@@ -687,7 +687,13 @@ function Component() {
                                         Sr.
                                     </th>
                                     <th>
+                                        Category
+                                    </th>
+                                    <th>
                                         Product
+                                    </th>
+                                    <th>
+                                        Brand
                                     </th>
                                     <th>
                                         Varient
@@ -715,7 +721,14 @@ function Component() {
                                                 {key + 1}
                                             </td>
                                             <td>
+                                                {varient.category_data.category_name
+                                                }
+                                            </td>
+                                            <td>
                                                 {varient.product_name}
+                                            </td>
+                                            <td>
+                                                {varient.brand_data.brand_name}
                                             </td>
                                             <td>
                                                 {varient.varient_name}
