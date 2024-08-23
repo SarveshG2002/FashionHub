@@ -12,6 +12,8 @@ import VariantComponent from "./pages/VariantsPage.jsx";
 import CouponComponent from "./pages/Couponspage.jsx";
 import OrdersComponent from "./pages/OrdersPage.jsx";
 import CancelOrdersComponent from "./pages/CancelOrdersPage.jsx";
+import IndexComponent from "./pages/index.jsx";
+
 
 
 function App() {
@@ -19,6 +21,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<IndexComponent />} />
+        
+
         <Route path="/admin" element={<AdminComponent />}>
           <Route path="" element={<Navigate to = "dashboard"/>} />
           <Route path="dashboard" element={<DashboardComponent />} />
