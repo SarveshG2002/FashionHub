@@ -20,6 +20,7 @@
 
 *{
   box-sizing: border-box;
+  /* font-family: ; */
 }
 
 a {
@@ -37,6 +38,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #fff9ef;
 }
 
 h1 {
