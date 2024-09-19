@@ -18,7 +18,12 @@
 
 .banner .bannerHeading h1{
     margin-top: 100px;
-    font-size: 80px;
+    font-size: 70px;
+}
+
+.banner .bannerHeading h2{
+    margin-top: 10px;
+    font-size: 20px;
 }
 
 .banner .bannerImage{
@@ -29,3 +34,14 @@
     /* align-items: ; */
     justify-content: center;
 }
+
+.banner .shop-now{
+    background: var(--theme);
+    padding: 10px 20px;
+    color: white;
+    width: fit-content;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+

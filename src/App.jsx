@@ -13,7 +13,7 @@ import CouponComponent from "./pages/Couponspage.jsx";
 import OrdersComponent from "./pages/OrdersPage.jsx";
 import CancelOrdersComponent from "./pages/CancelOrdersPage.jsx";
 import IndexComponent from "./pages/index.jsx";
-
+import "./var.css";
 
 
 function App() {
