@@ -1,0 +1,31 @@
+.banner{
+    height: 85vh;
+    padding: 10px 100px;
+    /* background-color: white; */
+    display: grid;
+    grid-template-columns: 60% auto;
+    /* background: url("graphics/2.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.banner .bannerHeading{
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+.banner .bannerHeading h1{
+    margin-top: 100px;
+    font-size: 80px;
+}
+
+.banner .bannerImage{
+    width: 100%;
+    height: 100%;
+    /* background-color: azure; */
+    display: flex;
+    /* align-items: ; */
+    justify-content: center;
+}
